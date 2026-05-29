@@ -508,87 +508,124 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
 
 .articles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 32px;
-  margin-top: 60px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 50px;
 }
 
-.article-card {
+.product-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 32px;
-  text-decoration: none;
-  color: var(--text);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 16px;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(12px);
   position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
-.article-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(255, 255, 255, 0.06), transparent 40%);
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.article-card:hover::before {
-  opacity: 1;
-}
-
-.article-card:hover {
+.product-card:hover {
   transform: translateY(-6px);
   border-color: var(--border-hover);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
 }
 
-.article-card h2 {
-  font-size: 1.35em;
-  font-weight: 700;
-  margin: 0 0 16px;
-  border: none;
-  padding: 0;
-  color: #fff;
-  transition: color 0.3s ease;
+.card-badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: rgba(0, 206, 201, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(0, 206, 201, 0.3);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.8em;
+  font-weight: 800;
+  z-index: 2;
 }
 
-.article-card h2::before { display: none; }
-
-.article-card:hover h2 {
-  color: var(--accent-light);
+.product-img {
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  display: block;
 }
 
-.article-card p {
-  color: var(--text-muted);
-  font-size: 0.95em;
-  line-height: 1.6;
+.card-content {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  margin: 0;
 }
 
-.article-card .read-more {
-  margin-top: 24px;
-  color: var(--accent-light);
+.card-title {
+  font-family: var(--font-title);
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.card-price {
+  font-family: var(--font-title);
+  font-size: 1.3em;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+}
+
+.btn-review, .btn-buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: var(--font-title);
   font-weight: 700;
   font-size: 0.9em;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: gap 0.3s ease;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.article-card:hover .read-more {
-  color: var(--green);
-  gap: 10px;
+.btn-review {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+  border: 1px solid var(--border);
+}
+
+.btn-review:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
+}
+
+.btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+  background: linear-gradient(135deg, #7c3aed, var(--accent));
 }
 
 .stats-bar {
@@ -654,9 +691,8 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
   <article class="wrapper">
     
     <div class="hero">
-      <h1>Обзоры товаров</h1>
-      <p>Экспертные обзоры с реальными отзывами покупателей,
-         характеристиками и честными оценками.</p>
+      <h1>Каталог Обзоров</h1>
+      <p>Премиальные экспертные обзоры с честными оценками ИИ, плюсами, минусами и возможностью мгновенного сравнения цен.</p>
     </div>
 
     <div class="stats-bar">
@@ -672,36 +708,156 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
 
     <div class="articles-grid">
 
-    <a href="obzor-bez-nazvaniya-stoit-li-pokupat.html" class="article-card">
-      <h2>Обзор Без названия — стоит ли покупать?</h2>
-      <p>Выбор идеального товара — это всегда маленькое приключение, полное компромиссов и неожиданных открытий. Мы живем в мире,</p>
-      <span class="read-more">Читать обзор &rarr;</span>
-    </a>
-    <a href="obzor-test-sites-stoit-li-pokupat.html" class="article-card">
-      <h2>Обзор Test Sites — стоит ли покупать?</h2>
-      <p>В современном мире цифровых технологий скорость и качество запуска продуктов часто определяют успех бизнеса. Но как прот</p>
-      <span class="read-more">Читать обзор &rarr;</span>
-    </a>
-    <a href="obzor-bez-nazvaniya-stoit-li-pokupat-3.html" class="article-card">
-      <h2>Обзор Без названия — стоит ли покупать?</h2>
-      <p>Выбор подходящего товара — это всегда непростая задача. Когда полки магазинов и страницы интернет-маркетплейсов ломятся </p>
-      <span class="read-more">Читать обзор &rarr;</span>
-    </a>
-    <a href="obzor-bez-nazvaniya-stoit-li-pokupat-4.html" class="article-card">
-      <h2>Обзор Без названия — стоит ли покупать?</h2>
-      <p>В мире, где выбор буквально ослепляет, найти действительно стоящую вещь бывает непросто. Перед вами — результат нашего г</p>
-      <span class="read-more">Читать обзор &rarr;</span>
-    </a>
-    <a href="obzor-test-sites-stoit-li-pokupat-5.html" class="article-card">
-      <h2>Обзор Test Sites — стоит ли покупать?</h2>
-      <p>Когда я впервые столкнулся с необходимостью тестировать веб-сайты в изолированной среде, то перепробовал кучу решений. Л</p>
-      <span class="read-more">Читать обзор &rarr;</span>
-    </a>
-    <a href="obzor-bez-nazvaniya-stoit-li-pokupat-6.html" class="article-card">
-      <h2>Обзор Без названия — стоит ли покупать?</h2>
-      <p>Выбор нового гаджета или предмета обихода — задача, которая может поставить в тупик даже опытного покупателя. Рынок пере</p>
-      <span class="read-more">Читать обзор &rarr;</span>
-    </a>
+    <div class="product-card">
+      <div class="card-badge">⭐ 9.1</div>
+      
+      <svg class="product-img" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:hsl(57, 80%, 60%);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:hsl(117, 90%, 40%);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad-1)" opacity="0.1" rx="16" />
+        <circle cx="100" cy="100" r="40" fill="url(#grad-1)" opacity="0.8" />
+        <path d="M75 100 L125 100 M100 75 L100 125" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+
+      <div class="card-content">
+        <h3 class="card-title">Без названия</h3>
+        <p class="card-desc">Выбор идеального товара — это всегда маленькое приключение, полное компромиссов и неожиданных открытий. Мы живем в мире,...</p>
+        <div class="card-price">от 13 729 ₽</div>
+        <div class="card-actions">
+          <a href="obzor-bez-nazvaniya-stoit-li-pokupat.html" class="btn-review">Обзор</a>
+          <a href="https://t.me/cheap_for?product=1" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-badge">⭐ 9.6</div>
+      
+      <svg class="product-img" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:hsl(114, 80%, 60%);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:hsl(174, 90%, 40%);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad-2)" opacity="0.1" rx="16" />
+        <circle cx="100" cy="100" r="40" fill="url(#grad-2)" opacity="0.8" />
+        <path d="M75 100 L125 100 M100 75 L100 125" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+
+      <div class="card-content">
+        <h3 class="card-title">Test Sites</h3>
+        <p class="card-desc">В современном мире цифровых технологий скорость и качество запуска продуктов часто определяют успех бизнеса. Но как прот...</p>
+        <div class="card-price">от 14 468 ₽</div>
+        <div class="card-actions">
+          <a href="obzor-test-sites-stoit-li-pokupat.html" class="btn-review">Обзор</a>
+          <a href="https://t.me/cheap_for?product=2" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-badge">⭐ 8.7</div>
+      
+      <svg class="product-img" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:hsl(171, 80%, 60%);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:hsl(231, 90%, 40%);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad-3)" opacity="0.1" rx="16" />
+        <circle cx="100" cy="100" r="40" fill="url(#grad-3)" opacity="0.8" />
+        <path d="M75 100 L125 100 M100 75 L100 125" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+
+      <div class="card-content">
+        <h3 class="card-title">Без названия</h3>
+        <p class="card-desc">Выбор подходящего товара — это всегда непростая задача. Когда полки магазинов и страницы интернет-маркетплейсов ломятся ...</p>
+        <div class="card-price">от 15 207 ₽</div>
+        <div class="card-actions">
+          <a href="obzor-bez-nazvaniya-stoit-li-pokupat-3.html" class="btn-review">Обзор</a>
+          <a href="https://t.me/cheap_for?product=3" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-badge">⭐ 9.2</div>
+      
+      <svg class="product-img" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad-4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:hsl(228, 80%, 60%);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:hsl(288, 90%, 40%);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad-4)" opacity="0.1" rx="16" />
+        <circle cx="100" cy="100" r="40" fill="url(#grad-4)" opacity="0.8" />
+        <path d="M75 100 L125 100 M100 75 L100 125" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+
+      <div class="card-content">
+        <h3 class="card-title">Без названия</h3>
+        <p class="card-desc">В мире, где выбор буквально ослепляет, найти действительно стоящую вещь бывает непросто. Перед вами — результат нашего г...</p>
+        <div class="card-price">от 15 946 ₽</div>
+        <div class="card-actions">
+          <a href="obzor-bez-nazvaniya-stoit-li-pokupat-4.html" class="btn-review">Обзор</a>
+          <a href="https://t.me/cheap_for?product=4" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-badge">⭐ 9.7</div>
+      
+      <svg class="product-img" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad-5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:hsl(285, 80%, 60%);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:hsl(345, 90%, 40%);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad-5)" opacity="0.1" rx="16" />
+        <circle cx="100" cy="100" r="40" fill="url(#grad-5)" opacity="0.8" />
+        <path d="M75 100 L125 100 M100 75 L100 125" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+
+      <div class="card-content">
+        <h3 class="card-title">Test Sites</h3>
+        <p class="card-desc">Когда я впервые столкнулся с необходимостью тестировать веб-сайты в изолированной среде, то перепробовал кучу решений. Л...</p>
+        <div class="card-price">от 16 685 ₽</div>
+        <div class="card-actions">
+          <a href="obzor-test-sites-stoit-li-pokupat-5.html" class="btn-review">Обзор</a>
+          <a href="https://t.me/cheap_for?product=5" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-badge">⭐ 8.8</div>
+      
+      <svg class="product-img" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad-6" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:hsl(342, 80%, 60%);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:hsl(402, 90%, 40%);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad-6)" opacity="0.1" rx="16" />
+        <circle cx="100" cy="100" r="40" fill="url(#grad-6)" opacity="0.8" />
+        <path d="M75 100 L125 100 M100 75 L100 125" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+
+      <div class="card-content">
+        <h3 class="card-title">Без названия</h3>
+        <p class="card-desc">Выбор нового гаджета или предмета обихода — задача, которая может поставить в тупик даже опытного покупателя. Рынок пере...</p>
+        <div class="card-price">от 17 424 ₽</div>
+        <div class="card-actions">
+          <a href="obzor-bez-nazvaniya-stoit-li-pokupat-6.html" class="btn-review">Обзор</a>
+          <a href="https://t.me/cheap_for?product=6" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
     </div>
 
     <footer class="footer">
