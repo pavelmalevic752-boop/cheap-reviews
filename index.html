@@ -233,6 +233,257 @@ blockquote::before {
 strong { color: var(--accent-light); font-weight: 600; }
 em { color: var(--text-muted); }
 hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+/* ─── Хедер (Шапка) ─── */
+.header {
+  border-bottom: 1px solid var(--border);
+  background: rgba(6, 6, 10, 0.85);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-title);
+  font-size: 1.6em;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: -0.5px;
+}
+
+.logo-glow {
+  background: linear-gradient(135deg, var(--accent-light), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #fff;
+}
+
+.nav a.tg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(108, 92, 231, 0.1);
+  border: 1px solid rgba(108, 92, 231, 0.2);
+  padding: 8px 16px;
+  border-radius: 50px;
+  color: var(--accent-light);
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.nav a.tg-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 15px var(--accent-glow);
+  border-color: transparent;
+}
+
+/* ─── Glowing Blobs ─── */
+.bg-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.06;
+  animation: pulse-blob 10s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  width: 450px;
+  height: 450px;
+  background: var(--accent);
+  top: -10%;
+  left: 10%;
+}
+
+.blob-2 {
+  width: 550px;
+  height: 550px;
+  background: var(--green);
+  bottom: 5%;
+  right: 5%;
+  animation-delay: 3s;
+}
+
+@keyframes pulse-blob {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.25) translate(40px, -30px); }
+}
+
+/* ─── ИИ Вердикт Карточка ─── */
+.verdict-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin: 40px 0;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.verdict-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent), var(--green));
+}
+
+.verdict-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.verdict-score-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.verdict-score-label {
+  font-family: var(--font-title);
+  font-size: 0.85em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.verdict-score-val {
+  font-family: var(--font-title);
+  font-size: 2.4em;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.verdict-score-val span {
+  font-size: 0.55em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.verdict-badge {
+  background: rgba(0, 206, 201, 0.08);
+  color: var(--green);
+  border: 1px solid rgba(0, 206, 201, 0.2);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 0.8em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.verdict-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.verdict-column h4 {
+  font-family: var(--font-title);
+  font-size: 1.15em;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.verdict-column.pros h4 { color: var(--green); }
+.verdict-column.cons h4 { color: #ff7675; }
+
+.verdict-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.verdict-column li {
+  font-size: 0.95em;
+  color: #d1d1e0;
+  margin: 12px 0;
+  position: relative;
+  padding-left: 24px;
+  line-height: 1.5;
+}
+
+.verdict-column.pros li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+.verdict-column.cons li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: #ff7675;
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+@media (max-width: 640px) {
+  .verdict-body { grid-template-columns: 1fr; gap: 24px; }
+  .verdict-card { padding: 24px; }
+  .verdict-score-val { font-size: 2em; }
+}
 .hero {
   text-align: center;
   padding: 80px 0 50px;
@@ -380,6 +631,26 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
   </style>
 </head>
 <body>
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-glow">Cheap</span>For
+      </a>
+      <nav class="nav">
+        <a href="index.html">Все обзоры</a>
+        <a href="https://t.me/cheap_for" target="_blank" class="tg-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: middle;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          Telegram
+        </a>
+      </nav>
+    </div>
+  </header>
+
   <article class="wrapper">
     
     <div class="hero">
