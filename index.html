@@ -485,6 +485,77 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
   .verdict-card { padding: 24px; }
   .verdict-score-val { font-size: 2em; }
 }
+
+/* Scroll Indicator */
+.scroll-indicator-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 999;
+}
+.scroll-indicator-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--accent), var(--green));
+  box-shadow: 0 0 8px var(--accent-light);
+  transition: width 0.1s ease;
+}
+
+/* User Rating & Toast Widget */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(20, 20, 31, 0.95);
+  border: 1px solid var(--accent-light);
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 10px var(--accent-glow);
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.toast-msg.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.criteria-bars {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.criteria-item {
+  margin-bottom: 12px;
+}
+.criteria-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.criteria-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.criteria-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(to right, var(--accent), var(--green));
+  box-shadow: 0 0 8px var(--accent-glow);
+}
 .search-container {
   max-width: 500px;
   margin: 32px auto 16px;
@@ -616,6 +687,37 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
   z-index: 2;
 }
 
+.card-heart {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  color: var(--text-muted);
+}
+
+.card-heart:hover {
+  background: rgba(255, 118, 117, 0.15);
+  border-color: rgba(255, 118, 117, 0.3);
+  color: #ff7675;
+  transform: scale(1.1);
+}
+
+.card-heart.active {
+  background: rgba(255, 118, 117, 0.2);
+  border-color: transparent;
+  color: #ff7675;
+}
+
 .product-img {
   width: 100%;
   height: 160px;
@@ -738,6 +840,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
   </style>
 </head>
 <body>
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator-container">
+    <div class="scroll-indicator-bar" id="scroll-bar"></div>
+  </div>
+
   <div class="bg-blobs">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -783,13 +890,16 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
     </div>
 
     <div class="category-filters">
-      <button class="filter-btn active" data-filter="all">Все обзоры</button><button class="filter-btn" data-filter="Гаджеты">Гаджеты (6)</button>
+      <button class="filter-btn active" data-filter="all">Все обзоры</button><button class="filter-btn" data-filter="Гаджеты">Гаджеты (6)</button><button class="filter-btn" data-filter="favorites" style="border-color: rgba(255,118,117,0.3); color:#ff7675;">❤️ Избранное (<span id="fav-count">0</span>)</button>
     </div>
 
     <div class="articles-grid" id="articles-grid">
 
-    <div class="product-card" data-category="Гаджеты">
+    <div class="product-card" data-category="Гаджеты" data-product-id="1">
       <div class="card-badge">⭐ 9.1</div>
+      <button class="card-heart" data-fav-id="1" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
       
       <svg class="product-img" viewBox="0 0 200 200">
         <defs>
@@ -814,8 +924,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
         </div>
       </div>
     </div>
-    <div class="product-card" data-category="Гаджеты">
+    <div class="product-card" data-category="Гаджеты" data-product-id="2">
       <div class="card-badge">⭐ 9.6</div>
+      <button class="card-heart" data-fav-id="2" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
       
       <svg class="product-img" viewBox="0 0 200 200">
         <defs>
@@ -840,8 +953,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
         </div>
       </div>
     </div>
-    <div class="product-card" data-category="Гаджеты">
+    <div class="product-card" data-category="Гаджеты" data-product-id="3">
       <div class="card-badge">⭐ 8.7</div>
+      <button class="card-heart" data-fav-id="3" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
       
       <svg class="product-img" viewBox="0 0 200 200">
         <defs>
@@ -866,8 +982,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
         </div>
       </div>
     </div>
-    <div class="product-card" data-category="Гаджеты">
+    <div class="product-card" data-category="Гаджеты" data-product-id="4">
       <div class="card-badge">⭐ 9.2</div>
+      <button class="card-heart" data-fav-id="4" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
       
       <svg class="product-img" viewBox="0 0 200 200">
         <defs>
@@ -892,8 +1011,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
         </div>
       </div>
     </div>
-    <div class="product-card" data-category="Гаджеты">
+    <div class="product-card" data-category="Гаджеты" data-product-id="5">
       <div class="card-badge">⭐ 9.7</div>
+      <button class="card-heart" data-fav-id="5" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
       
       <svg class="product-img" viewBox="0 0 200 200">
         <defs>
@@ -918,8 +1040,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
         </div>
       </div>
     </div>
-    <div class="product-card" data-category="Гаджеты">
+    <div class="product-card" data-category="Гаджеты" data-product-id="6">
       <div class="card-badge">⭐ 8.8</div>
+      <button class="card-heart" data-fav-id="6" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
       
       <svg class="product-img" viewBox="0 0 200 200">
         <defs>
@@ -946,24 +1071,69 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
     </div>
     </div>
 
-    <!-- Интерактивный скрипт для мгновенной фильтрации на клиенте -->
+    <!-- Интерактивный скрипт для мгновенной фильтрации и Избранного на клиенте -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('search-input');
       const filterBtns = document.querySelectorAll('.filter-btn');
       const cards = document.querySelectorAll('.product-card');
+      const hearts = document.querySelectorAll('.card-heart');
+      const favCountSpan = document.getElementById('fav-count');
 
       let activeCategory = 'all';
       let searchQuery = '';
+      let favorites = JSON.parse(localStorage.getItem('user_favorites') || '[]');
 
+      // ── Инициализация сердечек ──
+      function updateHeartsUI() {
+        hearts.forEach(heart => {
+          const id = heart.getAttribute('data-fav-id');
+          if (favorites.includes(id)) {
+            heart.classList.add('active');
+          } else {
+            heart.classList.remove('active');
+          }
+        });
+        favCountSpan.textContent = favorites.length;
+      }
+      updateHeartsUI();
+
+      // ── Обработчик клика на сердечко ──
+      hearts.forEach(heart => {
+        heart.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = heart.getAttribute('data-fav-id');
+          if (favorites.includes(id)) {
+            favorites = favorites.filter(x => x !== id);
+          } else {
+            favorites.push(id);
+          }
+          localStorage.setItem('user_favorites', JSON.stringify(favorites));
+          updateHeartsUI();
+          if (activeCategory === 'favorites') {
+            filterCards();
+          }
+        });
+      });
+
+      // ── Фильтрация карточек ──
       function filterCards() {
         cards.forEach(card => {
           const title = card.querySelector('.card-title').textContent.toLowerCase();
           const desc = card.querySelector('.card-desc').textContent.toLowerCase();
           const category = card.getAttribute('data-category');
+          const productId = card.getAttribute('data-product-id');
 
           const matchesSearch = title.includes(searchQuery) || desc.includes(searchQuery);
-          const matchesCategory = activeCategory === 'all' || category === activeCategory;
+          
+          let matchesCategory = false;
+          if (activeCategory === 'all') {
+            matchesCategory = true;
+          } else if (activeCategory === 'favorites') {
+            matchesCategory = favorites.includes(productId);
+          } else {
+            matchesCategory = category === activeCategory;
+          }
 
           if (matchesSearch && matchesCategory) {
             card.style.display = 'flex';
@@ -997,9 +1167,45 @@ hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
     });
     </script>
 
+    <!-- Премиальный трастовый футер (E-E-A-T) -->
+    <div style="margin-top:120px; border-top:1px solid var(--border); padding-top:48px; padding-bottom:32px;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:40px; margin-bottom:40px; text-align:left;">
+        <div>
+          <h4 style="font-family:var(--font-title); font-size:1.1em; color:#fff; margin-bottom:16px;">О проекте CheapFor</h4>
+          <p style="font-size:0.85em; color:var(--text-muted); line-height:1.6;">Платформа CheapFor предоставляет независимые экспертные обзоры техники, гаджетов и потребительских товаров с использованием ИИ-вердиктов и глубокого анализа характеристик.</p>
+        </div>
+        <div>
+          <h4 style="font-family:var(--font-title); font-size:1.1em; color:#fff; margin-bottom:16px;">Полезные разделы</h4>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.85em;">
+            <li style="margin:8px 0;"><a href="index.html" style="color:var(--text-muted); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Все обзоры</a></li>
+            <li style="margin:8px 0;"><a href="sitemap.xml" style="color:var(--text-muted); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Карта сайта (Sitemap)</a></li>
+            <li style="margin:8px 0;"><a href="https://t.me/cheap_for" target="_blank" style="color:var(--text-muted); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Наш Telegram-канал</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-family:var(--font-title); font-size:1.1em; color:#fff; margin-bottom:16px;">Дисклеймер о партнерстве</h4>
+          <p style="font-size:0.75em; color:var(--text-muted); line-height:1.6;">Сайт CheapFor является участником партнерских программ рекламодателей (AliExpress, Яндекс.Маркет и др.). Некоторые ссылки на товары являются партнерскими (реферальными). Это позволяет нам развивать проект абсолютно бесплатно для читателей.</p>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer">
       <p>&copy; 2026 &mdash; Обзоры товаров | Сгенерировано автоматически</p>
     </footer>
   </article>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-msg">Ссылка скопирована!</div>
+
+  <!-- Scroll Indicator Script -->
+  <script>
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    const bar = document.getElementById('scroll-bar');
+    if (bar) bar.style.width = scrolled + '%';
+  });
+  </script>
 </body>
 </html>
