@@ -210,6 +210,108 @@ blockquote::before {
   transform: translateX(4px);
 }
 
+/* ─── E-commerce Product Showcase ─── */
+.product-showcase-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  padding: 32px;
+  margin: 40px 0;
+  box-shadow: 8px 8px 0px #000000;
+  align-items: center;
+}
+
+.showcase-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showcase-img {
+  width: 100%;
+  max-width: 320px;
+  height: 280px;
+  object-fit: cover;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.showcase-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.showcase-cat {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.showcase-price {
+  font-family: var(--font-mono);
+  font-size: 2.2em;
+  font-weight: 800;
+  color: #000;
+}
+
+.promo-box {
+  background: #121214;
+  color: var(--accent);
+  border: 2px solid #000;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+}
+
+.promo-box:hover {
+  background: #000;
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.promo-lbl {
+  color: #fff;
+  font-weight: 700;
+}
+
+.promo-val {
+  font-weight: 800;
+  background: var(--accent-secondary);
+  color: #fff;
+  padding: 2px 8px;
+  border: 1px solid #000;
+}
+
+.promo-copy-hint {
+  font-size: 0.75em;
+  color: #888;
+}
+
+@media (max-width: 640px) {
+  .product-showcase-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px;
+  }
+  .showcase-img {
+    height: 200px;
+  }
+  .showcase-price {
+    font-size: 1.8em;
+  }
+}
+
 /* ─── Подвал ─── */
 .footer {
   margin-top: 80px;
@@ -669,11 +771,13 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
 
 .product-img {
   width: 100%;
-  height: 160px;
+  height: 180px;
+  object-fit: cover;
   border: 3px solid #000;
   margin-top: 20px;
   margin-bottom: 16px;
   display: block;
+  box-shadow: 4px 4px 0px #000;
 }
 
 .card-content {
@@ -834,7 +938,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
         <div class="label">Обзоров</div>
       </div>
       <div class="stat">
-        <div class="number">7</div>
+        <div class="number">0</div>
         <div class="label">Товаров</div>
       </div>
     </div>
@@ -856,32 +960,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
       <button class="card-heart" data-fav-id="7" title="Добавить в избранное">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      
-      <svg class="product-img" style="height: 160px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-7-False" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(39, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(99, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-7" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-7)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-7-False)" opacity="0.05" rx="6" />
-        
-          <rect x="155" y="25" width="90" height="150" rx="12" fill="url(#grad-7-False)" opacity="0.2" />
-          <rect x="160" y="30" width="80" height="140" rx="10" fill="#121214" stroke="#000" stroke-width="4" />
-          <rect x="165" y="35" width="70" height="130" rx="6" fill="none" stroke="url(#grad-7-False)" stroke-width="2" />
-          
-          <rect x="175" y="42" width="22" height="42" rx="4" fill="#1e1e24" stroke="#000" stroke-width="2" />
-          <circle cx="186" cy="50" r="5" fill="url(#grad-7-False)" />
-          <circle cx="186" cy="62" r="3" fill="#00ffcc" />
-          <circle cx="186" cy="72" r="3" fill="#ff0055" />
-          
-          <path d="M 170 120 L 185 110 L 200 130 L 215 100 L 230 115" fill="none" stroke="#d1fe00" stroke-width="3" stroke-linecap="round" />
-          <circle cx="215" cy="100" r="4" fill="#fff" />
-            </svg>
+      <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="Xiaomi Redmi Note 13 Pro 256GB" class="product-img">
       <div class="card-content">
         <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Смартфоны</span>
         <h3 class="card-title">Xiaomi Redmi Note 13 Pro 256GB</h3>
@@ -898,38 +977,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
       <button class="card-heart" data-fav-id="8" title="Добавить в избранное">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      
-      <svg class="product-img" style="height: 160px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-8-False" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(96, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(156, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-8" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-8)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-8-False)" opacity="0.05" rx="6" />
-        
-          <circle cx="200" cy="100" r="65" fill="#121214" stroke="#000" stroke-width="4" />
-          <circle cx="200" cy="100" r="62" fill="none" stroke="url(#grad-8-False)" stroke-width="3" opacity="0.8" />
-          
-          <path d="M 139 77 A 65 65 0 0 1 261 77" fill="none" stroke="#ff0055" stroke-width="4" stroke-linecap="round" />
-          
-          <circle cx="200" cy="85" r="18" fill="#1e1e24" stroke="#000" stroke-width="3" />
-          <circle cx="200" cy="85" r="10" fill="url(#grad-8-False)" />
-          <line x1="200" y1="85" x2="210" y2="76" stroke="#fff" stroke-width="2" stroke-linecap="round" />
-          <line x1="200" y1="85" x2="160" y2="50" stroke="#ff0055" stroke-width="1" stroke-dasharray="3,3" opacity="0.7" />
-          <line x1="200" y1="85" x2="250" y2="120" stroke="#00ffcc" stroke-width="1" stroke-dasharray="3,3" opacity="0.7" />
-          
-          <circle cx="200" cy="130" r="5" fill="#2d2d30" stroke="#000" stroke-width="2" />
-          <circle cx="188" cy="125" r="4" fill="#2d2d30" stroke="#000" stroke-width="2" />
-          <circle cx="212" cy="125" r="4" fill="#2d2d30" stroke="#000" stroke-width="2" />
-          
-          <path d="M 80 160 L 320 160" stroke="#000" stroke-width="2" />
-          <path d="M 80 160 L 320 160" stroke="#00ffcc" stroke-width="1" stroke-dasharray="10,5" />
-            </svg>
+      <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="Roborock Q7 Max Robot Vacuum Cleaner" class="product-img">
       <div class="card-content">
         <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Бытовая техника</span>
         <h3 class="card-title">Roborock Q7 Max Robot Vacuum Cleaner</h3>
@@ -946,27 +994,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
       <button class="card-heart" data-fav-id="12" title="Добавить в избранное">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      
-      <svg class="product-img" style="height: 160px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-12-False" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(324, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(384, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-12" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-12)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-12-False)" opacity="0.05" rx="6" />
-        
-          <rect x="188" y="30" width="24" height="140" fill="#121214" stroke="#000" stroke-width="3" rx="4" />
-          <rect x="175" y="70" width="50" height="60" rx="14" fill="#1e1e24" stroke="#000" stroke-width="4" />
-          <rect x="177" y="72" width="46" height="56" rx="12" fill="none" stroke="url(#grad-12-False)" stroke-width="2" />
-          
-          <path d="M 185 100 L 192 100 L 197 90 L 203 110 L 208 100 L 215 100" fill="none" stroke="#ff0055" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="200" cy="100" r="15" fill="url(#grad-12-False)" opacity="0.15" />
-            </svg>
+      <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="AliExpress WW Promo Code AEPL110" class="product-img">
       <div class="card-content">
         <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
         <h3 class="card-title">AliExpress WW Promo Code AEPL110</h3>
@@ -983,27 +1011,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
       <button class="card-heart" data-fav-id="13" title="Добавить в избранное">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      
-      <svg class="product-img" style="height: 160px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-13-False" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(21, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(81, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-13" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-13)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-13-False)" opacity="0.05" rx="6" />
-        
-          <rect x="188" y="30" width="24" height="140" fill="#121214" stroke="#000" stroke-width="3" rx="4" />
-          <rect x="175" y="70" width="50" height="60" rx="14" fill="#1e1e24" stroke="#000" stroke-width="4" />
-          <rect x="177" y="72" width="46" height="56" rx="12" fill="none" stroke="url(#grad-13-False)" stroke-width="2" />
-          
-          <path d="M 185 100 L 192 100 L 197 90 L 203 110 L 208 100 L 215 100" fill="none" stroke="#ff0055" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="200" cy="100" r="15" fill="url(#grad-13-False)" opacity="0.15" />
-            </svg>
+      <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="AliExpress WW Promo Code AEPL70" class="product-img">
       <div class="card-content">
         <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
         <h3 class="card-title">AliExpress WW Promo Code AEPL70</h3>
@@ -1020,27 +1028,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
       <button class="card-heart" data-fav-id="14" title="Добавить в избранное">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      
-      <svg class="product-img" style="height: 160px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-14-False" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(78, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(138, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-14" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-14)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-14-False)" opacity="0.05" rx="6" />
-        
-          <rect x="188" y="30" width="24" height="140" fill="#121214" stroke="#000" stroke-width="3" rx="4" />
-          <rect x="175" y="70" width="50" height="60" rx="14" fill="#1e1e24" stroke="#000" stroke-width="4" />
-          <rect x="177" y="72" width="46" height="56" rx="12" fill="none" stroke="url(#grad-14-False)" stroke-width="2" />
-          
-          <path d="M 185 100 L 192 100 L 197 90 L 203 110 L 208 100 L 215 100" fill="none" stroke="#ff0055" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="200" cy="100" r="15" fill="url(#grad-14-False)" opacity="0.15" />
-            </svg>
+      <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="AliExpress WW Promo Code ILAFF07" class="product-img">
       <div class="card-content">
         <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
         <h3 class="card-title">AliExpress WW Promo Code ILAFF07</h3>
@@ -1057,27 +1045,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
       <button class="card-heart" data-fav-id="15" title="Добавить в избранное">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      
-      <svg class="product-img" style="height: 160px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-15-False" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(135, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(195, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-15" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-15)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-15-False)" opacity="0.05" rx="6" />
-        
-          <rect x="188" y="30" width="24" height="140" fill="#121214" stroke="#000" stroke-width="3" rx="4" />
-          <rect x="175" y="70" width="50" height="60" rx="14" fill="#1e1e24" stroke="#000" stroke-width="4" />
-          <rect x="177" y="72" width="46" height="56" rx="12" fill="none" stroke="url(#grad-15-False)" stroke-width="2" />
-          
-          <path d="M 185 100 L 192 100 L 197 90 L 203 110 L 208 100 L 215 100" fill="none" stroke="#ff0055" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="200" cy="100" r="15" fill="url(#grad-15-False)" opacity="0.15" />
-            </svg>
+      <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="AliExpress WW Promo Code ILAFF06" class="product-img">
       <div class="card-content">
         <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
         <h3 class="card-title">AliExpress WW Promo Code ILAFF06</h3>
@@ -1094,27 +1062,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
       <button class="card-heart" data-fav-id="16" title="Добавить в избранное">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      
-      <svg class="product-img" style="height: 160px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-16-False" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(192, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(252, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-16" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-16)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-16-False)" opacity="0.05" rx="6" />
-        
-          <rect x="188" y="30" width="24" height="140" fill="#121214" stroke="#000" stroke-width="3" rx="4" />
-          <rect x="175" y="70" width="50" height="60" rx="14" fill="#1e1e24" stroke="#000" stroke-width="4" />
-          <rect x="177" y="72" width="46" height="56" rx="12" fill="none" stroke="url(#grad-16-False)" stroke-width="2" />
-          
-          <path d="M 185 100 L 192 100 L 197 90 L 203 110 L 208 100 L 215 100" fill="none" stroke="#ff0055" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="200" cy="100" r="15" fill="url(#grad-16-False)" opacity="0.15" />
-            </svg>
+      <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="AliExpress WW Promo Code ILAFF5" class="product-img">
       <div class="card-content">
         <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
         <h3 class="card-title">AliExpress WW Promo Code ILAFF5</h3>

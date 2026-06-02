@@ -210,6 +210,108 @@ blockquote::before {
   transform: translateX(4px);
 }
 
+/* ─── E-commerce Product Showcase ─── */
+.product-showcase-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  padding: 32px;
+  margin: 40px 0;
+  box-shadow: 8px 8px 0px #000000;
+  align-items: center;
+}
+
+.showcase-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showcase-img {
+  width: 100%;
+  max-width: 320px;
+  height: 280px;
+  object-fit: cover;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.showcase-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.showcase-cat {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.showcase-price {
+  font-family: var(--font-mono);
+  font-size: 2.2em;
+  font-weight: 800;
+  color: #000;
+}
+
+.promo-box {
+  background: #121214;
+  color: var(--accent);
+  border: 2px solid #000;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+}
+
+.promo-box:hover {
+  background: #000;
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.promo-lbl {
+  color: #fff;
+  font-weight: 700;
+}
+
+.promo-val {
+  font-weight: 800;
+  background: var(--accent-secondary);
+  color: #fff;
+  padding: 2px 8px;
+  border: 1px solid #000;
+}
+
+.promo-copy-hint {
+  font-size: 0.75em;
+  color: #888;
+}
+
+@media (max-width: 640px) {
+  .product-showcase-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px;
+  }
+  .showcase-img {
+    height: 200px;
+  }
+  .showcase-price {
+    font-size: 1.8em;
+  }
+}
+
 /* ─── Подвал ─── */
 .footer {
   margin-top: 80px;
@@ -538,31 +640,18 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
   <article class="wrapper">
     <h1>Xiaomi Redmi Note 13 Pro 256GB — обзор смартфона с камерой 200 МП и AMOLED-экраном</h1>
 
-      <svg class="product-hero-img" style="height: 320px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-9-True" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(153, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(213, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-9" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-9)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-9-True)" opacity="0.05" rx="6" />
+        <div class="product-showcase-card">
+          <div class="showcase-left">
+            <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="Обзор Xiaomi Redmi Note 13 Pro 256GB — стоит ли покупать?" class="showcase-img">
+          </div>
+          <div class="showcase-right">
+            <span class="showcase-cat">Смартфоны</span>
+            <div class="showcase-price">от 18 163 ₽</div>
+            
+            <a href="https://t.me/cheap_for?product=7" class="buy-button" target="_blank" rel="noopener noreferrer">Купить по лучшей цене</a>
+          </div>
+        </div>
         
-          <rect x="155" y="25" width="90" height="150" rx="12" fill="url(#grad-9-True)" opacity="0.2" />
-          <rect x="160" y="30" width="80" height="140" rx="10" fill="#121214" stroke="#000" stroke-width="4" />
-          <rect x="165" y="35" width="70" height="130" rx="6" fill="none" stroke="url(#grad-9-True)" stroke-width="2" />
-          
-          <rect x="175" y="42" width="22" height="42" rx="4" fill="#1e1e24" stroke="#000" stroke-width="2" />
-          <circle cx="186" cy="50" r="5" fill="url(#grad-9-True)" />
-          <circle cx="186" cy="62" r="3" fill="#00ffcc" />
-          <circle cx="186" cy="72" r="3" fill="#ff0055" />
-          
-          <path d="M 170 120 L 185 110 L 200 130 L 215 100 L 230 115" fill="none" stroke="#d1fe00" stroke-width="3" stroke-linecap="round" />
-          <circle cx="215" cy="100" r="4" fill="#fff" />
-            </svg>
 
     <div class="verdict-card">
       <div class="verdict-header">
@@ -633,6 +722,17 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
         navigator.clipboard.writeText(window.location.href);
         const toast = document.getElementById('toast');
         if (toast) {
+          toast.textContent = 'Ссылка скопирована!';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+      }
+
+      function copyPromo(code) {
+        navigator.clipboard.writeText(code);
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = 'Промокод скопирован: ' + code;
           toast.classList.add('show');
           setTimeout(() => toast.classList.remove('show'), 2500);
         }

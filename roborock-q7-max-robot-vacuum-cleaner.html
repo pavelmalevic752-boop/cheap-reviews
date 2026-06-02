@@ -210,6 +210,108 @@ blockquote::before {
   transform: translateX(4px);
 }
 
+/* ─── E-commerce Product Showcase ─── */
+.product-showcase-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  padding: 32px;
+  margin: 40px 0;
+  box-shadow: 8px 8px 0px #000000;
+  align-items: center;
+}
+
+.showcase-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showcase-img {
+  width: 100%;
+  max-width: 320px;
+  height: 280px;
+  object-fit: cover;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.showcase-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.showcase-cat {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.showcase-price {
+  font-family: var(--font-mono);
+  font-size: 2.2em;
+  font-weight: 800;
+  color: #000;
+}
+
+.promo-box {
+  background: #121214;
+  color: var(--accent);
+  border: 2px solid #000;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+}
+
+.promo-box:hover {
+  background: #000;
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.promo-lbl {
+  color: #fff;
+  font-weight: 700;
+}
+
+.promo-val {
+  font-weight: 800;
+  background: var(--accent-secondary);
+  color: #fff;
+  padding: 2px 8px;
+  border: 1px solid #000;
+}
+
+.promo-copy-hint {
+  font-size: 0.75em;
+  color: #888;
+}
+
+@media (max-width: 640px) {
+  .product-showcase-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px;
+  }
+  .showcase-img {
+    height: 200px;
+  }
+  .showcase-price {
+    font-size: 1.8em;
+  }
+}
+
 /* ─── Подвал ─── */
 .footer {
   margin-top: 80px;
@@ -538,37 +640,18 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
   <article class="wrapper">
     <h1>Roborock Q7 Max Robot Vacuum Cleaner: Обзор мощного пылесоса с LiDAR и 3D-картографированием</h1>
 
-      <svg class="product-hero-img" style="height: 320px; width: 100%; border: 3px solid #000; box-shadow: 4px 4px 0px #000; background: #1e1e24; display: block; margin: 20px 0;" viewBox="0 0 400 200">
-        <defs>
-          <linearGradient id="grad-10-True" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:hsl(210, 100%, 65%);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:hsl(270, 100%, 45%);stop-opacity:1" />
-          </linearGradient>
-          <pattern id="grid-pattern-10" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid-pattern-10)" />
-        <rect x="10" y="10" width="380" height="180" fill="url(#grad-10-True)" opacity="0.05" rx="6" />
+        <div class="product-showcase-card">
+          <div class="showcase-left">
+            <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&auto=format&fit=crop&q=60" alt="Обзор Roborock Q7 Max Robot Vacuum Cleaner — стоит ли покупать?" class="showcase-img">
+          </div>
+          <div class="showcase-right">
+            <span class="showcase-cat">Бытовая техника</span>
+            <div class="showcase-price">от 18 902 ₽</div>
+            
+            <a href="https://t.me/cheap_for?product=8" class="buy-button" target="_blank" rel="noopener noreferrer">Купить по лучшей цене</a>
+          </div>
+        </div>
         
-          <circle cx="200" cy="100" r="65" fill="#121214" stroke="#000" stroke-width="4" />
-          <circle cx="200" cy="100" r="62" fill="none" stroke="url(#grad-10-True)" stroke-width="3" opacity="0.8" />
-          
-          <path d="M 139 77 A 65 65 0 0 1 261 77" fill="none" stroke="#ff0055" stroke-width="4" stroke-linecap="round" />
-          
-          <circle cx="200" cy="85" r="18" fill="#1e1e24" stroke="#000" stroke-width="3" />
-          <circle cx="200" cy="85" r="10" fill="url(#grad-10-True)" />
-          <line x1="200" y1="85" x2="210" y2="76" stroke="#fff" stroke-width="2" stroke-linecap="round" />
-          <line x1="200" y1="85" x2="160" y2="50" stroke="#ff0055" stroke-width="1" stroke-dasharray="3,3" opacity="0.7" />
-          <line x1="200" y1="85" x2="250" y2="120" stroke="#00ffcc" stroke-width="1" stroke-dasharray="3,3" opacity="0.7" />
-          
-          <circle cx="200" cy="130" r="5" fill="#2d2d30" stroke="#000" stroke-width="2" />
-          <circle cx="188" cy="125" r="4" fill="#2d2d30" stroke="#000" stroke-width="2" />
-          <circle cx="212" cy="125" r="4" fill="#2d2d30" stroke="#000" stroke-width="2" />
-          
-          <path d="M 80 160 L 320 160" stroke="#000" stroke-width="2" />
-          <path d="M 80 160 L 320 160" stroke="#00ffcc" stroke-width="1" stroke-dasharray="10,5" />
-            </svg>
 
     <div class="verdict-card">
       <div class="verdict-header">
@@ -639,6 +722,17 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
         navigator.clipboard.writeText(window.location.href);
         const toast = document.getElementById('toast');
         if (toast) {
+          toast.textContent = 'Ссылка скопирована!';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+      }
+
+      function copyPromo(code) {
+        navigator.clipboard.writeText(code);
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = 'Промокод скопирован: ' + code;
           toast.classList.add('show');
           setTimeout(() => toast.classList.remove('show'), 2500);
         }
