@@ -180,25 +180,26 @@ blockquote::before {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 32px 0;
+  margin: 20px 0;
   padding: 16px 36px;
-  background: var(--accent);
-  color: #000;
+  background: linear-gradient(135deg, #00c853 0%, #00e676 100%);
+  color: #fff;
   text-decoration: none;
   font-family: var(--font-title);
   font-weight: 800;
   font-size: 1.1em;
   text-transform: uppercase;
-  border: 3px solid #000;
-  box-shadow: 5px 5px 0px #000;
-  transition: all 0.15s ease-in-out;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.35);
+  transition: all 0.2s ease;
   letter-spacing: 0.5px;
 }
 
 .buy-button:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #000;
-  background: var(--green);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 200, 83, 0.5);
+  background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
 }
 
 .buy-button::after {
@@ -215,13 +216,26 @@ blockquote::before {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 32px;
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
   color: #000000;
-  border: 3px solid #000000;
+  border: 2px solid #e0e0e8;
+  border-radius: 16px;
   padding: 32px;
   margin: 40px 0;
-  box-shadow: 8px 8px 0px #000000;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-showcase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--green) 50%, var(--accent-secondary) 100%);
 }
 
 .showcase-left {
@@ -234,15 +248,17 @@ blockquote::before {
   width: 100%;
   max-width: 320px;
   height: 280px;
-  object-fit: cover;
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0px #000;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+  padding: 8px;
+  border: 1px solid #eee;
 }
 
 .showcase-right {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .showcase-cat {
@@ -253,17 +269,29 @@ blockquote::before {
   letter-spacing: 1px;
 }
 
+.mp-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
 .showcase-price {
-  font-family: var(--font-mono);
-  font-size: 2.2em;
+  font-family: var(--font-title);
+  font-size: 2.6em;
   font-weight: 800;
-  color: #000;
+  color: #e43225;
+  line-height: 1.1;
 }
 
 .promo-box {
   background: #121214;
   color: var(--accent);
   border: 2px solid #000;
+  border-radius: 8px;
   padding: 12px 18px;
   display: flex;
   justify-content: space-between;
@@ -289,8 +317,8 @@ blockquote::before {
   font-weight: 800;
   background: var(--accent-secondary);
   color: #fff;
-  padding: 2px 8px;
-  border: 1px solid #000;
+  padding: 2px 10px;
+  border-radius: 4px;
 }
 
 .promo-copy-hint {
@@ -301,14 +329,16 @@ blockquote::before {
 @media (max-width: 640px) {
   .product-showcase-card {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
     padding: 20px;
+    border-radius: 12px;
   }
   .showcase-img {
-    height: 200px;
+    height: 220px;
+    max-width: 100%;
   }
   .showcase-price {
-    font-size: 1.8em;
+    font-size: 2em;
   }
 }
 
@@ -934,11 +964,11 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
 
     <div class="stats-bar">
       <div class="stat">
-        <div class="number">5</div>
+        <div class="number">10</div>
         <div class="label">Обзоров</div>
       </div>
       <div class="stat">
-        <div class="number">5</div>
+        <div class="number">10</div>
         <div class="label">Товаров</div>
       </div>
     </div>
@@ -950,7 +980,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
     </div>
 
     <div class="category-filters">
-      <button class="filter-btn active" data-filter="all">Все обзоры</button><button class="filter-btn" data-filter="Гаджеты">Гаджеты (5)</button><button class="filter-btn" data-filter="favorites" style="border-color: rgba(255,118,117,0.3); color:#ff7675;">❤️ Избранное (<span id="fav-count">0</span>)</button>
+      <button class="filter-btn active" data-filter="all">Все обзоры</button><button class="filter-btn" data-filter="Гаджеты">Гаджеты (10)</button><button class="filter-btn" data-filter="favorites" style="border-color: rgba(255,118,117,0.3); color:#ff7675;">❤️ Избранное (<span id="fav-count">0</span>)</button>
     </div>
 
     <div class="articles-grid" id="articles-grid">
@@ -1037,6 +1067,91 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
         <div class="card-actions">
           <a href="kostyum-povara-detskiy-dlya-devochki-i-malchika-nabor-2-predmeta.html" class="btn-review">Обзор</a>
           <a href="https://takprdm.ru/0W9CLW83fWCmmPO0/?redirectTo=https%3A%2F%2Fozon.ru%2Fproduct%2F2070311169&erid=Y1jgkD6uB6jK1phqkTLTbNJSQ3h9" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-category="Гаджеты" data-product-id="57">
+      <div class="card-badge">⭐ 9.4</div>
+      <button class="card-heart" data-fav-id="57" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <img src="https://ir.ozone.ru/s3/multimedia-1-m/c200/7436792794.jpg" alt="Краска Malare интерьерная для стен и обоев потолка, для деревянных и минеральных поверхностей, акриловая, моющаяся быстросохнущая без запаха, матовая, cпелый лимон, (1л - 1,3 кг)" class="product-img">
+      <div class="card-content">
+        <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
+        <h3 class="card-title">Краска Malare интерьерная для стен и обоев потолка, для деревянных и минеральных поверхностей, акриловая, моющаяся быстросохнущая без запаха, матовая, cпелый лимон, (1л - 1,3 кг)</h3>
+        <p class="card-desc">Ну что, очередной «убийца Tikkurily» на рынке? Сегодня на операционном столе — краска Malare интерьерная акриловая моюща...</p>
+        <div class="card-price">от 55 113 ₽</div>
+        <div class="card-actions">
+          <a href="kraska-malare-interernaya-dlya-sten-i-oboev-potolka-dlya-derevyannykh.html" class="btn-review">Обзор</a>
+          <a href="https://takprdm.ru/0W9CLW825WCYLHe0/?redirectTo=https%3A%2F%2Fozon.ru%2Fproduct%2F475388989&erid=Y1jgkD6uB6jK1phqkTLTbNJREsE6" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-category="Гаджеты" data-product-id="58">
+      <div class="card-badge">⭐ 8.6</div>
+      <button class="card-heart" data-fav-id="58" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <img src="https://ir.ozone.ru/s3/multimedia-1-t/8508161693.jpg" alt="Кольцо серебро 925 женское, кольцо каучук" class="product-img">
+      <div class="card-content">
+        <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
+        <h3 class="card-title">Кольцо серебро 925 женское, кольцо каучук</h3>
+        <p class="card-desc">Давайте сразу к делу. Если вы ищете серебряное кольцо с каучуком, которое не выглядит как дешевая бижутерия с рынка, а п...</p>
+        <div class="card-price">от 55 852 ₽</div>
+        <div class="card-actions">
+          <a href="koltso-serebro-925-zhenskoe-koltso-kauchuk.html" class="btn-review">Обзор</a>
+          <a href="https://takprdm.ru/0W9CLW81GWCLPxS0/?redirectTo=https%3A%2F%2Fozon.ru%2Fproduct%2F562651780&erid=Y1jgkD6uB6jK1phqkTLTbNJRHVMV" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-category="Гаджеты" data-product-id="59">
+      <div class="card-badge">⭐ 9.1</div>
+      <button class="card-heart" data-fav-id="59" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <img src="https://ir.ozone.ru/s3/multimedia-1-o/7422172728.jpg" alt="Акриловая краска Malare для деревянного забора/ по дереву для наружных и внутренних работ/ быстросохнущая моющаяся без запаха, матовая, атлантида, 2 кг." class="product-img">
+      <div class="card-content">
+        <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
+        <h3 class="card-title">Акриловая краска Malare для деревянного забора/ по дереву для наружных и внутренних работ/ быстросохнущая моющаяся без запаха, матовая, атлантида, 2 кг.</h3>
+        <p class="card-desc">Друзья, давайте сразу к делу. Если вы зашли на Озон и увидели банку с гордой надписью «Malare — профессиональные краски»...</p>
+        <div class="card-price">от 56 591 ₽</div>
+        <div class="card-actions">
+          <a href="akrilovaya-kraska-malare-dlya-derevyannogo-zabora-po-derevu-dlya.html" class="btn-review">Обзор</a>
+          <a href="https://takprdm.ru/0W9CLW826GCZ4Bm0/?redirectTo=https%3A%2F%2Fozon.ru%2Fproduct%2F1337915806&erid=Y1jgkD6uB6jK1phqkTLTbNJSeVL3" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-category="Гаджеты" data-product-id="60">
+      <div class="card-badge">⭐ 9.6</div>
+      <button class="card-heart" data-fav-id="60" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <img src="https://ir.ozone.ru/s3/multimedia-1-9/8451040617.jpg" alt="Набор -Паста зубная SYNERGETIC Интенсивное отбеливание,100гр.-2шт" class="product-img">
+      <div class="card-content">
+        <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
+        <h3 class="card-title">Набор -Паста зубная SYNERGETIC Интенсивное отбеливание,100гр.-2шт</h3>
+        <p class="card-desc">Рынок гигиенической косметики на Ozon сейчас перенасыщен обещаниями голливудской улыбки. Маркетинговые отделы брендов со...</p>
+        <div class="card-price">от 57 330 ₽</div>
+        <div class="card-actions">
+          <a href="nabor-pasta-zubnaya-synergetic-intensivnoe-otbelivanie-100gr-2sht.html" class="btn-review">Обзор</a>
+          <a href="https://takprdm.ru/0W9CLW81OGCbtxm0/?redirectTo=https%3A%2F%2Fozon.ru%2Fproduct%2F3159412217&erid=Y1jgkD6uB6jK1phqkTLTbNJSQ4cA" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-category="Гаджеты" data-product-id="61">
+      <div class="card-badge">⭐ 8.7</div>
+      <button class="card-heart" data-fav-id="61" title="Добавить в избранное">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <img src="https://ir.ozone.ru/s3/multimedia-1-r/9654207471.jpg" alt="Кольцо обручальное серебро 925" class="product-img">
+      <div class="card-content">
+        <span style="font-size:0.75em; color:var(--accent-light); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Гаджеты</span>
+        <h3 class="card-title">Кольцо обручальное серебро 925</h3>
+        <p class="card-desc">Рынок ювелирных украшений — это минное поле из маркетинговых уловок, завышенных цен и сплавов непонятного качества. Когд...</p>
+        <div class="card-price">от 13 069 ₽</div>
+        <div class="card-actions">
+          <a href="koltso-obruchalnoe-serebro-925.html" class="btn-review">Обзор</a>
+          <a href="https://takprdm.ru/0W9CLW81GWCLPaO0/?redirectTo=https%3A%2F%2Fozon.ru%2Fproduct%2F308397514&erid=Y1jgkD6uB6jK1phqkTLTbNJRHVMV" target="_blank" rel="noopener noreferrer" class="btn-buy">Купить</a>
         </div>
       </div>
     </div>
