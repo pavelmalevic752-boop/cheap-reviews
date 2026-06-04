@@ -180,25 +180,26 @@ blockquote::before {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 32px 0;
+  margin: 20px 0;
   padding: 16px 36px;
-  background: var(--accent);
-  color: #000;
+  background: linear-gradient(135deg, #00c853 0%, #00e676 100%);
+  color: #fff;
   text-decoration: none;
   font-family: var(--font-title);
   font-weight: 800;
   font-size: 1.1em;
   text-transform: uppercase;
-  border: 3px solid #000;
-  box-shadow: 5px 5px 0px #000;
-  transition: all 0.15s ease-in-out;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.35);
+  transition: all 0.2s ease;
   letter-spacing: 0.5px;
 }
 
 .buy-button:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #000;
-  background: var(--green);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 200, 83, 0.5);
+  background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
 }
 
 .buy-button::after {
@@ -215,13 +216,26 @@ blockquote::before {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 32px;
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
   color: #000000;
-  border: 3px solid #000000;
+  border: 2px solid #e0e0e8;
+  border-radius: 16px;
   padding: 32px;
   margin: 40px 0;
-  box-shadow: 8px 8px 0px #000000;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-showcase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--green) 50%, var(--accent-secondary) 100%);
 }
 
 .showcase-left {
@@ -234,15 +248,17 @@ blockquote::before {
   width: 100%;
   max-width: 320px;
   height: 280px;
-  object-fit: cover;
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0px #000;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+  padding: 8px;
+  border: 1px solid #eee;
 }
 
 .showcase-right {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .showcase-cat {
@@ -253,17 +269,29 @@ blockquote::before {
   letter-spacing: 1px;
 }
 
+.mp-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
 .showcase-price {
-  font-family: var(--font-mono);
-  font-size: 2.2em;
+  font-family: var(--font-title);
+  font-size: 2.6em;
   font-weight: 800;
-  color: #000;
+  color: #e43225;
+  line-height: 1.1;
 }
 
 .promo-box {
   background: #121214;
   color: var(--accent);
   border: 2px solid #000;
+  border-radius: 8px;
   padding: 12px 18px;
   display: flex;
   justify-content: space-between;
@@ -289,8 +317,8 @@ blockquote::before {
   font-weight: 800;
   background: var(--accent-secondary);
   color: #fff;
-  padding: 2px 8px;
-  border: 1px solid #000;
+  padding: 2px 10px;
+  border-radius: 4px;
 }
 
 .promo-copy-hint {
@@ -301,14 +329,16 @@ blockquote::before {
 @media (max-width: 640px) {
   .product-showcase-card {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
     padding: 20px;
+    border-radius: 12px;
   }
   .showcase-img {
-    height: 200px;
+    height: 220px;
+    max-width: 100%;
   }
   .showcase-price {
-    font-size: 1.8em;
+    font-size: 2em;
   }
 }
 
@@ -646,7 +676,7 @@ hr { border: none; border-top: 3px solid #000; margin: 48px 0; }
           </div>
           <div class="showcase-right">
             <span class="mp-badge" style="background:#005bff; color:#fff; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.85em; display: inline-block; margin-bottom: 8px;">Ozon</span>
-            <span class="showcase-cat">Гаджеты</span>
+            <span class="showcase-cat">Отделочные и строительные материалы</span>
             <div class="showcase-price">1049.0 ₽</div>
             
             <a href="https://takprdm.ru/0W9CLW825WCYVme0/?redirectTo=https%3A%2F%2Fozon.ru%2Fproduct%2F1601537003&erid=Y1jgkD6uB6jK1phqkTLTbNJREsE6" class="buy-button" target="_blank" rel="noopener noreferrer">Купить на Ozon</a>
