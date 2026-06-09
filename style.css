@@ -462,6 +462,21 @@ body {
   color: #d1d5db;
 }
 
+.article-content img, 
+.article-content iframe, 
+.article-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+.article-content pre, 
+.article-content table {
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
 /* AI Verdict Card */
 .verdict-modern {
   background: rgba(31, 31, 38, 0.7);
