@@ -22,12 +22,21 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: var(--font-main);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* ─── HEADER ─── */
@@ -609,7 +618,24 @@ body {
     margin-bottom: 8px;
   }
   
-  .article-content { padding: 24px; }
+  .article-content { 
+    padding: 16px; 
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .article-content h1 {
+    font-size: 1.4em;
+    margin-bottom: 16px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .article-content h2 {
+    font-size: 1.2em;
+    margin: 24px 0 16px;
+  }
+  .article-layout {
+    gap: 24px;
+  }
   .verdict-columns { grid-template-columns: 1fr; }
   
   .mobile-nav {
