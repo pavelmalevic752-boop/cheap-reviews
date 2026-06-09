@@ -3718,7 +3718,8 @@
       const cards = document.querySelectorAll('.product-card');
       cards.forEach(card => {
         let isPromo = false;
-        if (cat.startsWith('🔥 Акции >')) {
+        // The category string might be HTML escaped (e.g., &gt;)
+        if (cat.includes('Акции') && cat.includes('%')) {
           const minDiscount = parseInt(cat.replace(/[^0-9]/g, ''));
           if (parseInt(card.dataset.discount) >= minDiscount) {
             isPromo = true;
