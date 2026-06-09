@@ -160,6 +160,11 @@ body {
   scrollbar-width: auto;
   scrollbar-color: var(--primary) var(--bg-card);
   white-space: nowrap;
+  user-select: none;
+  cursor: grab;
+}
+.category-chips:active {
+  cursor: grabbing;
 }
 .category-chips::-webkit-scrollbar {
   height: 6px;
