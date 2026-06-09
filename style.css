@@ -158,7 +158,43 @@ body {
   background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
 }
 
-.category-chips {
+  /* --- MAIN TABS --- */
+  .main-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 0 16px;
+    flex-wrap: wrap;
+  }
+  .main-tab {
+    background: rgba(31, 31, 38, 0.7);
+    border: 1px solid var(--border-color);
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .main-tab:hover {
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+  }
+  .main-tab.active {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(31, 31, 38, 0.8) 100%);
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .category-chips {
   display: flex;
   flex-wrap: nowrap;
   gap: 12px;
