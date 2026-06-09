@@ -155,9 +155,21 @@ body {
   overflow-x: auto;
   padding-bottom: 16px;
   margin-bottom: 32px;
-  scrollbar-width: none;
+  scrollbar-width: auto;
+  scrollbar-color: var(--primary) var(--bg-card);
+  white-space: nowrap;
 }
-.category-chips::-webkit-scrollbar { display: none; }
+.category-chips::-webkit-scrollbar {
+  height: 6px;
+}
+.category-chips::-webkit-scrollbar-track {
+  background: var(--bg-card);
+  border-radius: 4px;
+}
+.category-chips::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
 
 .chip {
   background: var(--bg-card);
