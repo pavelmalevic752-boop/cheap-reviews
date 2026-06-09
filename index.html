@@ -3726,6 +3726,32 @@
         }
       });
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.querySelector('.search-input');
+      if(searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const term = e.target.value.toLowerCase();
+          const cards = document.querySelectorAll('.product-card');
+          cards.forEach(card => {
+            const title = card.querySelector('.product-title').innerText.toLowerCase();
+            if (title.includes(term)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          if(term) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+          } else {
+            // Restore 'Все' filter if search is empty
+            const allChip = document.querySelector('.chip[data-cat="Все"]') || document.querySelector('.chip');
+            if (allChip) allChip.click();
+          }
+        });
+      }
+    });
   </script>
 
   <script>
