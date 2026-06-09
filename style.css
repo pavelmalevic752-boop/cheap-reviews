@@ -161,6 +161,7 @@ body {
   scrollbar-color: var(--primary) var(--bg-card);
   white-space: nowrap;
   user-select: none;
+  -webkit-user-select: none;
   cursor: grab;
 }
 .category-chips:active {
@@ -189,6 +190,10 @@ body {
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .chip:hover, .chip.active {

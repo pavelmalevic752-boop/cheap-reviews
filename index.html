@@ -24,7 +24,7 @@
       </div>
       <nav class="nav-links">
         <a href="#catalog" class="hide-mobile">Каталог</a>
-        <a href="#catalog" class="hide-mobile" onclick="document.querySelector('.chip[data-cat=\'Акции\']') ? filterCategory('Акции', document.querySelector('.chip[data-cat=\'Акции\']')) : null;">Акции</a>
+        <a href="#catalog" class="hide-mobile" onclick="document.querySelector('.chip[data-cat=\'🔥 Акции > 40%\']') ? filterCategory('🔥 Акции > 40%', document.querySelector('.chip[data-cat=\'🔥 Акции > 40%\']')) : null;">Акции</a>
         <a href="https://t.me/cheap_for" target="_blank" class="tg-btn-header">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           Telegram
@@ -36,6 +36,10 @@
   <main class="container">
     <div class="category-chips">
       <div class="chip active" onclick="filterCategory('Все', this)">Все товары</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 50%" onclick="filterCategory(&#39;🔥 Акции &gt; 50%&#39;, this)">🔥 Акции &gt; 50%</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 40%" onclick="filterCategory(&#39;🔥 Акции &gt; 40%&#39;, this)">🔥 Акции &gt; 40%</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 30%" onclick="filterCategory(&#39;🔥 Акции &gt; 30%&#39;, this)">🔥 Акции &gt; 30%</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 20%" onclick="filterCategory(&#39;🔥 Акции &gt; 20%&#39;, this)">🔥 Акции &gt; 20%</div>
       <div class="chip" data-cat="Авто и мототовары" onclick="filterCategory(&#39;Авто и мототовары&#39;, this)">Авто и мототовары</div>
       <div class="chip" data-cat="Автозапчасти и комплектующие" onclick="filterCategory(&#39;Автозапчасти и комплектующие&#39;, this)">Автозапчасти и комплектующие</div>
       <div class="chip" data-cat="Автохимия" onclick="filterCategory(&#39;Автохимия&#39;, this)">Автохимия</div>
@@ -43,7 +47,6 @@
       <div class="chip" data-cat="Аксессуары для животных" onclick="filterCategory(&#39;Аксессуары для животных&#39;, this)">Аксессуары для животных</div>
       <div class="chip" data-cat="Аксессуары для обуви" onclick="filterCategory(&#39;Аксессуары для обуви&#39;, this)">Аксессуары для обуви</div>
       <div class="chip" data-cat="Аксессуары для электроники" onclick="filterCategory(&#39;Аксессуары для электроники&#39;, this)">Аксессуары для электроники</div>
-      <div class="chip" data-cat="Акции" onclick="filterCategory(&#39;Акции&#39;, this)">Акции</div>
       <div class="chip" data-cat="Аудио" onclick="filterCategory(&#39;Аудио&#39;, this)">Аудио</div>
       <div class="chip" data-cat="Белье" onclick="filterCategory(&#39;Белье&#39;, this)">Белье</div>
       <div class="chip" data-cat="Бижутерия" onclick="filterCategory(&#39;Бижутерия&#39;, this)">Бижутерия</div>
@@ -3715,8 +3718,11 @@
       const cards = document.querySelectorAll('.product-card');
       cards.forEach(card => {
         let isPromo = false;
-        if (cat === 'Акции' && parseInt(card.dataset.discount) >= 40) {
-          isPromo = true;
+        if (cat.startsWith('🔥 Акции >')) {
+          const minDiscount = parseInt(cat.replace(/[^0-9]/g, ''));
+          if (parseInt(card.dataset.discount) >= minDiscount) {
+            isPromo = true;
+          }
         }
         
         if (cat === 'Все' || isPromo || card.dataset.category === cat) {
