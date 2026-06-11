@@ -23,6 +23,7 @@
         <input type="text" class="search-input" placeholder="Искать товары, обзоры и скидки...">
       </div>
       <nav class="nav-links">
+        <button id="theme-toggle" style="background:none; border:none; color:var(--text-primary); cursor:pointer; font-size: 1.2em;" title="Переключить тему">🌓</button>
         <a href="#catalog" class="hide-mobile">Каталог</a>
         <a href="#catalog" class="hide-mobile" onclick="document.querySelector('.chip[data-cat=\'🔥 Акции > 40%\']') ? filterCategory('🔥 Акции > 40%', document.querySelector('.chip[data-cat=\'🔥 Акции > 40%\']')) : null;">Акции</a>
         <a href="https://t.me/cheap_for" target="_blank" class="tg-btn-header">
@@ -8402,6 +8403,10 @@
     </div>
   </main>
   
+  <a href="https://t.me/cheap_for" target="_blank" class="tg-widget" title="Наш Telegram">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+  </a>
+  
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-logo">CheapFor.ru</div>
@@ -8534,6 +8539,20 @@
             const allChip = document.querySelector('.chip[data-cat="Все"]') || document.querySelector('.chip');
             if (allChip) allChip.click();
           }
+        });
+      }
+
+      // Theme Toggle Logic
+      const themeToggle = document.getElementById('theme-toggle');
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'light') {
+        document.body.classList.add('light-theme');
+      }
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('light-theme');
+          const isLight = document.body.classList.contains('light-theme');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
       }
     });
