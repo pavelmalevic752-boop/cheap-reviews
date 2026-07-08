@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheapFor — Маркетплейс Скидок</title>
+  <meta name="description" content="Лучшие товары с Ozon, Wildberries и AliExpress. Честные обзоры и реальные скидки.">
+  <meta name="yandex-verification" content="b23982bde463bdc0" />
+  <meta name="google-site-verification" content="5uako-cbSmSKRjFw1IDBVM3KeU29gaiQPB14o0eNk_o" />
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="canonical" href="https://cheapfor.ru/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="space-bg"></canvas>
+
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.png" alt="CheapFor Logo" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;">
+        Cheap<span>For</span>
+      </a>
+      <div class="search-bar-container">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" class="search-input" placeholder="Искать товары, обзоры и скидки...">
+      </div>
+      <nav class="nav-links">
+        <button id="theme-toggle" style="background:none; border:none; color:var(--text-primary); cursor:pointer; font-size: 1.2em;" title="Переключить тему">🌓</button>
+        <a href="index.html" class="hide-mobile">Каталог</a>
+        <a href="ozon-finds.html" class="hide-mobile" style="color: #005bff;">Ozon</a>
+        <a href="wildberries-finds.html" class="hide-mobile" style="color: #cb11ab;">WB</a>
+        <a href="aliexpress-finds.html" class="hide-mobile" style="color: #ff4747;">AliExpress</a>
+        <a href="https://t.me/cheap_for" target="_blank" class="tg-btn-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          Telegram
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="main-tabs">
+      <button class="main-tab active" data-target="product" onclick="switchType('product')">🛍️ Товары</button>
+      <button class="main-tab" data-target="promo" onclick="switchType('promo')">🎟️ Промокоды</button>
+      <button class="main-tab" data-target="travel" onclick="switchType('travel')">✈️ Путешествия</button>
+    </div>
+
+    <div class="category-chips">
+      <div class="chip active" data-cat="Все" data-type="all" onclick="filterCategory('Все', this)">Все категории</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 50%" data-type="promo" onclick="filterCategory(&#39;🔥 Акции &gt; 50%&#39;, this)">🔥 Акции &gt; 50%</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 40%" data-type="promo" onclick="filterCategory(&#39;🔥 Акции &gt; 40%&#39;, this)">🔥 Акции &gt; 40%</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 30%" data-type="promo" onclick="filterCategory(&#39;🔥 Акции &gt; 30%&#39;, this)">🔥 Акции &gt; 30%</div>
+      <div class="chip" data-cat="🔥 Акции &gt; 20%" data-type="promo" onclick="filterCategory(&#39;🔥 Акции &gt; 20%&#39;, this)">🔥 Акции &gt; 20%</div>
+      <div class="chip" data-cat="Авто и мототовары" data-type="product" onclick="filterCategory(&#39;Авто и мототовары&#39;, this)">Авто и мототовары</div>
+      <div class="chip" data-cat="Автозапчасти и комплектующие" data-type="product" onclick="filterCategory(&#39;Автозапчасти и комплектующие&#39;, this)">Автозапчасти и комплектующие</div>
+      <div class="chip" data-cat="Автохимия" data-type="product" onclick="filterCategory(&#39;Автохимия&#39;, this)">Автохимия</div>
+      <div class="chip" data-cat="Автоэлектроника и автозвук" data-type="product" onclick="filterCategory(&#39;Автоэлектроника и автозвук&#39;, this)">Автоэлектроника и автозвук</div>
+      <div class="chip" data-cat="Аксессуары" data-type="product" onclick="filterCategory(&#39;Аксессуары&#39;, this)">Аксессуары</div>
+      <div class="chip" data-cat="Аксессуары для бытовой техники" data-type="product" onclick="filterCategory(&#39;Аксессуары для бытовой техники&#39;, this)">Аксессуары для бытовой техники</div>
+      <div class="chip" data-cat="Аксессуары для животных" data-type="product" onclick="filterCategory(&#39;Аксессуары для животных&#39;, this)">Аксессуары для животных</div>
+      <div class="chip" data-cat="Аксессуары для обуви" data-type="product" onclick="filterCategory(&#39;Аксессуары для обуви&#39;, this)">Аксессуары для обуви</div>
+      <div class="chip" data-cat="Аксессуары для одежды" data-type="product" onclick="filterCategory(&#39;Аксессуары для одежды&#39;, this)">Аксессуары для одежды</div>
+      <div class="chip" data-cat="Аксессуары для электроники" data-type="product" onclick="filterCategory(&#39;Аксессуары для электроники&#39;, this)">Аксессуары для электроники</div>
+      <div class="chip" data-cat="Аудио" data-type="product" onclick="filterCategory(&#39;Аудио&#39;, this)">Аудио</div>
+      <div class="chip" data-cat="Белье" data-type="product" onclick="filterCategory(&#39;Белье&#39;, this)">Белье</div>
+      <div class="chip" data-cat="Бижутерия" data-type="product" onclick="filterCategory(&#39;Бижутерия&#39;, this)">Бижутерия</div>
+      <div class="chip" data-cat="Бумажная продукция" data-type="product" onclick="filterCategory(&#39;Бумажная продукция&#39;, this)">Бумажная продукция</div>
+      <div class="chip" data-cat="Бытовая техника" data-type="product" onclick="filterCategory(&#39;Бытовая техника&#39;, this)">Бытовая техника</div>
+      <div class="chip" data-cat="Бытовая химия" data-type="product" onclick="filterCategory(&#39;Бытовая химия&#39;, this)">Бытовая химия</div>
+      <div class="chip" data-cat="Ветаптека" data-type="product" onclick="filterCategory(&#39;Ветаптека&#39;, this)">Ветаптека</div>
+      <div class="chip" data-cat="Все для дома и сада" data-type="product" onclick="filterCategory(&#39;Все для дома и сада&#39;, this)">Все для дома и сада</div>
+      <div class="chip" data-cat="Гаджеты" data-type="product" onclick="filterCategory(&#39;Гаджеты&#39;, this)">Гаджеты</div>
+      <div class="chip" data-cat="Галантерея" data-type="product" onclick="filterCategory(&#39;Галантерея&#39;, this)">Галантерея</div>
+      <div class="chip" data-cat="Декор и интерьер" data-type="product" onclick="filterCategory(&#39;Декор и интерьер&#39;, this)">Декор и интерьер</div>
+      <div class="chip" data-cat="Декоративная косметика" data-type="product" onclick="filterCategory(&#39;Декоративная косметика&#39;, this)">Декоративная косметика</div>
+      <div class="chip" data-cat="Детские товары" data-type="product" onclick="filterCategory(&#39;Детские товары&#39;, this)">Детские товары</div>
+      <div class="chip" data-cat="Детское творчество" data-type="product" onclick="filterCategory(&#39;Детское творчество&#39;, this)">Детское творчество</div>
+      <div class="chip" data-cat="Игровые приставки и аксессуары" data-type="product" onclick="filterCategory(&#39;Игровые приставки и аксессуары&#39;, this)">Игровые приставки и аксессуары</div>
+      <div class="chip" data-cat="Игры и игрушки" data-type="product" onclick="filterCategory(&#39;Игры и игрушки&#39;, this)">Игры и игрушки</div>
+      <div class="chip" data-cat="Инвентарь для дома и уборки" data-type="product" onclick="filterCategory(&#39;Инвентарь для дома и уборки&#39;, this)">Инвентарь для дома и уборки</div>
+      <div class="chip" data-cat="Канцелярия" data-type="product" onclick="filterCategory(&#39;Канцелярия&#39;, this)">Канцелярия</div>
+      <div class="chip" data-cat="Кино, музыка, игры и ПО" data-type="product" onclick="filterCategory(&#39;Кино, музыка, игры и ПО&#39;, this)">Кино, музыка, игры и ПО</div>
+      <div class="chip" data-cat="Книги" data-type="product" onclick="filterCategory(&#39;Книги&#39;, this)">Книги</div>
+      <div class="chip" data-cat="Книги и канцелярия" data-type="product" onclick="filterCategory(&#39;Книги и канцелярия&#39;, this)">Книги и канцелярия</div>
+      <div class="chip" data-cat="Компьютеры и комплектующие" data-type="product" onclick="filterCategory(&#39;Компьютеры и комплектующие&#39;, this)">Компьютеры и комплектующие</div>
+      <div class="chip" data-cat="Конный спорт" data-type="product" onclick="filterCategory(&#39;Конный спорт&#39;, this)">Конный спорт</div>
+      <div class="chip" data-cat="Корма и лакомства" data-type="product" onclick="filterCategory(&#39;Корма и лакомства&#39;, this)">Корма и лакомства</div>
+      <div class="chip" data-cat="Кормление и питание" data-type="product" onclick="filterCategory(&#39;Кормление и питание&#39;, this)">Кормление и питание</div>
+      <div class="chip" data-cat="Красота и здоровье" data-type="product" onclick="filterCategory(&#39;Красота и здоровье&#39;, this)">Красота и здоровье</div>
+      <div class="chip" data-cat="Купание" data-type="product" onclick="filterCategory(&#39;Купание&#39;, this)">Купание</div>
+      <div class="chip" data-cat="Музыкальные инструменты" data-type="product" onclick="filterCategory(&#39;Музыкальные инструменты&#39;, this)">Музыкальные инструменты</div>
+      <div class="chip" data-cat="Наушники и колонки" data-type="product" onclick="filterCategory(&#39;Наушники и колонки&#39;, this)">Наушники и колонки</div>
+      <div class="chip" data-cat="Носители данных" data-type="product" onclick="filterCategory(&#39;Носители данных&#39;, this)">Носители данных</div>
+      <div class="chip" data-cat="Обувь" data-type="product" onclick="filterCategory(&#39;Обувь&#39;, this)">Обувь</div>
+      <div class="chip" data-cat="Одежда" data-type="product" onclick="filterCategory(&#39;Одежда&#39;, this)">Одежда</div>
+      <div class="chip" data-cat="Отделочные и строительные материалы" data-type="product" onclick="filterCategory(&#39;Отделочные и строительные материалы&#39;, this)">Отделочные и строительные материалы</div>
+      <div class="chip" data-cat="Посуда и кухонные принадлежности" data-type="product" onclick="filterCategory(&#39;Посуда и кухонные принадлежности&#39;, this)">Посуда и кухонные принадлежности</div>
+      <div class="chip" data-cat="Продукты" data-type="product" onclick="filterCategory(&#39;Продукты&#39;, this)">Продукты</div>
+      <div class="chip" data-cat="Прочее 18+" data-type="product" onclick="filterCategory(&#39;Прочее 18+&#39;, this)">Прочее 18+</div>
+      <div class="chip" data-cat="Рукоделие" data-type="product" onclick="filterCategory(&#39;Рукоделие&#39;, this)">Рукоделие</div>
+      <div class="chip" data-cat="Сад и огород" data-type="product" onclick="filterCategory(&#39;Сад и огород&#39;, this)">Сад и огород</div>
+      <div class="chip" data-cat="Секс-игрушки" data-type="product" onclick="filterCategory(&#39;Секс-игрушки&#39;, this)">Секс-игрушки</div>
+      <div class="chip" data-cat="Смартфоны" data-type="product" onclick="filterCategory(&#39;Смартфоны&#39;, this)">Смартфоны</div>
+      <div class="chip" data-cat="Спецодежда" data-type="product" onclick="filterCategory(&#39;Спецодежда&#39;, this)">Спецодежда</div>
+      <div class="chip" data-cat="Спортивные товары" data-type="product" onclick="filterCategory(&#39;Спортивные товары&#39;, this)">Спортивные товары</div>
+      <div class="chip" data-cat="Спортивный инвентарь" data-type="product" onclick="filterCategory(&#39;Спортивный инвентарь&#39;, this)">Спортивный инвентарь</div>
+      <div class="chip" data-cat="Средства гигиены" data-type="product" onclick="filterCategory(&#39;Средства гигиены&#39;, this)">Средства гигиены</div>
+      <div class="chip" data-cat="Творчество разное" data-type="product" onclick="filterCategory(&#39;Творчество разное&#39;, this)">Творчество разное</div>
+      <div class="chip" data-cat="Техника для красоты" data-type="product" onclick="filterCategory(&#39;Техника для красоты&#39;, this)">Техника для красоты</div>
+      <div class="chip" data-cat="Техника для стирки и уборки" data-type="product" onclick="filterCategory(&#39;Техника для стирки и уборки&#39;, this)">Техника для стирки и уборки</div>
+      <div class="chip" data-cat="Товары для автосервиса" data-type="product" onclick="filterCategory(&#39;Товары для автосервиса&#39;, this)">Товары для автосервиса</div>
+      <div class="chip" data-cat="Товары для животных" data-type="product" onclick="filterCategory(&#39;Товары для животных&#39;, this)">Товары для животных</div>
+      <div class="chip" data-cat="Товары для праздников" data-type="product" onclick="filterCategory(&#39;Товары для праздников&#39;, this)">Товары для праздников</div>
+      <div class="chip" data-cat="Тренажеры" data-type="product" onclick="filterCategory(&#39;Тренажеры&#39;, this)">Тренажеры</div>
+      <div class="chip" data-cat="Туризм и кемпинг" data-type="product" onclick="filterCategory(&#39;Туризм и кемпинг&#39;, this)">Туризм и кемпинг</div>
+      <div class="chip" data-cat="Украшения" data-type="product" onclick="filterCategory(&#39;Украшения&#39;, this)">Украшения</div>
+      <div class="chip" data-cat="Уход за лицом и телом" data-type="product" onclick="filterCategory(&#39;Уход за лицом и телом&#39;, this)">Уход за лицом и телом</div>
+      <div class="chip" data-cat="Уход и гигиена для животных" data-type="product" onclick="filterCategory(&#39;Уход и гигиена для животных&#39;, this)">Уход и гигиена для животных</div>
+      <div class="chip" data-cat="Фитнес и йога" data-type="product" onclick="filterCategory(&#39;Фитнес и йога&#39;, this)">Фитнес и йога</div>
+      <div class="chip" data-cat="Хобби" data-type="product" onclick="filterCategory(&#39;Хобби&#39;, this)">Хобби</div>
+      <div class="chip" data-cat="Электроника" data-type="product" onclick="filterCategory(&#39;Электроника&#39;, this)">Электроника</div>
+      <div class="chip" data-cat="🔞 18+" data-type="product" onclick="filterCategory(&#39;🔞 18+&#39;, this)">🔞 18+</div>
+      <div class="chip" data-cat="AliExpress WW" data-type="promo" onclick="filterCategory(&#39;AliExpress WW&#39;, this)">AliExpress WW</div>
+      <div class="chip" data-cat="OZON Travel" data-type="travel" onclick="filterCategory(&#39;OZON Travel&#39;, this)">OZON Travel</div>
+      
+    </div>
+
+    <div class="product-grid" id="catalog">
+      
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="63" onclick="window.location.href='podarochnye-bokaly-dlya-viski-s-nadpisyu-s-23-fevralya.html'" style="cursor: pointer;">
+              <div class="product-badge">-63%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-13.wbbasket.ru/vol2006/part200601/200601745/images/square/1.webp" alt="Обзор Подарочные бокалы для виски с надписью С 23 Февраля — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">318.0 ₽</span>
+                  <span class="product-old-price">4 134 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Подарочные бокалы для виски с надписью С 23 Февраля — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.0</span>
+                </div>
+                <a href="podarochnye-bokaly-dlya-viski-s-nadpisyu-s-23-fevralya.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Книги и канцелярия" data-type="product" data-discount="55" onclick="window.location.href='kniga-s-nakleykami-dlya-rebenka-razvivaem-rech-3.html'" style="cursor: pointer;">
+              <div class="product-badge">-55%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-16.wbbasket.ru/vol2539/part253908/253908248/images/square/1.webp" alt="Обзор Книга с наклейками для ребенка развиваем Речь, 3+ — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">117.0 ₽</span>
+                  <span class="product-old-price">1 521 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Книга с наклейками для ребенка развиваем Речь, 3+ — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="kniga-s-nakleykami-dlya-rebenka-razvivaem-rech-3.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Книги и канцелярия" data-type="product" data-discount="62" onclick="window.location.href='bumaga-dlya-chercheniya-a3-20-listov-bez-ramki.html'" style="cursor: pointer;">
+              <div class="product-badge">-62%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-27.wbbasket.ru/vol4996/part499644/499644463/images/square/1.webp" alt="Обзор Бумага для черчения А3, 20 листов, без рамки — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">299.0 ₽</span>
+                  <span class="product-old-price">3 887 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Бумага для черчения А3, 20 листов, без рамки — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.7</span>
+                </div>
+                <a href="bumaga-dlya-chercheniya-a3-20-listov-bez-ramki.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Книги и канцелярия" data-type="product" data-discount="26" onclick="window.location.href='propisi-dlya-doshkolnikov.html'" style="cursor: pointer;">
+              <div class="product-badge">-26%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-10.wbbasket.ru/vol1548/part154879/154879566/images/square/1.webp" alt="Обзор Прописи для дошкольников — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">148.0 ₽</span>
+                  <span class="product-old-price">1 924 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Прописи для дошкольников — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.3</span>
+                </div>
+                <a href="propisi-dlya-doshkolnikov.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Автозапчасти и комплектующие" data-type="product" data-discount="53" onclick="window.location.href='klipsy-avtomobilnye-remkomplekt-725.html'" style="cursor: pointer;">
+              <div class="product-badge">-53%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-14.wbbasket.ru/vol2130/part213015/213015942/images/square/1.webp" alt="Обзор Клипсы автомобильные ремкомплект 725 — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">539.0 ₽</span>
+                  <span class="product-old-price">7 007 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Клипсы автомобильные ремкомплект 725 — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.3</span>
+                </div>
+                <a href="klipsy-avtomobilnye-remkomplekt-725.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Товары для животных" data-type="product" data-discount="31" onclick="window.location.href='lezhanka-polka-dlya-koshek-nastennaya-bez-bortika.html'" style="cursor: pointer;">
+              <div class="product-badge">-31%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-42.wbbasket.ru/vol10514/part1051452/1051452824/images/square/1.webp" alt="Обзор Лежанка полка для кошек настенная без бортика — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">2478.0 ₽</span>
+                  <span class="product-old-price">32 214 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Лежанка полка для кошек настенная без бортика — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.6</span>
+                </div>
+                <a href="lezhanka-polka-dlya-koshek-nastennaya-bez-bortika.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Электроника" data-type="product" data-discount="22" onclick="window.location.href='noutbuk-dlya-raboty-i-ucheby-15-6-ips-16-512-gb.html'" style="cursor: pointer;">
+              <div class="product-badge">-22%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol9693/part969320/969320630/images/square/1.webp" alt="Обзор Ноутбук для работы и учебы 15,6&quot; IPS 16 512 GB — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">150200.0 ₽</span>
+                  <span class="product-old-price">1 952 600 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Ноутбук для работы и учебы 15,6" IPS 16 512 GB — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="noutbuk-dlya-raboty-i-ucheby-15-6-ips-16-512-gb.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Электроника" data-type="product" data-discount="48" onclick="window.location.href='noutbuk-dlya-raboty-i-ucheby-15-6-12-512-gb.html'" style="cursor: pointer;">
+              <div class="product-badge">-48%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol9693/part969320/969320634/images/square/1.webp" alt="Обзор Ноутбук для работы и учебы 15,6&quot; 12 512 GB — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">150200.0 ₽</span>
+                  <span class="product-old-price">1 952 600 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Ноутбук для работы и учебы 15,6" 12 512 GB — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.0</span>
+                </div>
+                <a href="noutbuk-dlya-raboty-i-ucheby-15-6-12-512-gb.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="33" onclick="window.location.href='klyap-bdsm.html'" style="cursor: pointer;">
+              <div class="product-badge">-33%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-27.wbbasket.ru/vol4996/part499604/499604579/images/square/1.webp" alt="Обзор Кляп БДСМ — характеристики, плюсы и минусы" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">503.0 ₽</span>
+                  <span class="product-old-price">6 539 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Кляп БДСМ — характеристики, плюсы и минусы</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="klyap-bdsm.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="40" onclick="window.location.href='nastolnaya-igra-dlya-kompaniy-imadzhinarium-khimera-dopolnenie.html'" style="cursor: pointer;">
+              <div class="product-badge">-40%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-01.wbbasket.ru/vol27/part2737/2737178/images/square/1.webp" alt="Обзор Настольная игра для компаний Имаджинариум Химера дополнение — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">924.0 ₽</span>
+                  <span class="product-old-price">12 012 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Настольная игра для компаний Имаджинариум Химера дополнение — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="nastolnaya-igra-dlya-kompaniy-imadzhinarium-khimera-dopolnenie.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Посуда и кухонные принадлежности" data-type="product" data-discount="59" onclick="window.location.href='termos-s-knopkoy-klapanom-0-5-l.html'" style="cursor: pointer;">
+              <div class="product-badge">-59%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-04.wbbasket.ru/vol665/part66527/66527452/images/square/1.webp" alt="Обзор Термос с кнопкой клапаном 0.5 л — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">439.0 ₽</span>
+                  <span class="product-old-price">5 707 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Термос с кнопкой клапаном 0.5 л — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.4</span>
+                </div>
+                <a href="termos-s-knopkoy-klapanom-0-5-l.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="16" onclick="window.location.href='masturbator.html'" style="cursor: pointer;">
+              <div class="product-badge">-16%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-27.wbbasket.ru/vol4995/part499523/499523749/images/square/1.webp" alt="Обзор Мастурбатор — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">521.0 ₽</span>
+                  <span class="product-old-price">6 773 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Мастурбатор — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.6</span>
+                </div>
+                <a href="masturbator.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="30" onclick="window.location.href='nabor-chashek-330-ml-2-sht-s-lozhkami.html'" style="cursor: pointer;">
+              <div class="product-badge">-30%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-23.wbbasket.ru/vol3995/part399569/399569719/images/square/1.webp" alt="Обзор Набор чашек 330 мл - 2 шт с ложками — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">521.0 ₽</span>
+                  <span class="product-old-price">6 773 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Набор чашек 330 мл - 2 шт с ложками — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="nabor-chashek-330-ml-2-sht-s-lozhkami.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="37" onclick="window.location.href='shar-lateksnyy-12-standart-nabor-100-sht-tsvet-siniy.html'" style="cursor: pointer;">
+              <div class="product-badge">-37%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-02.wbbasket.ru/vol234/part23418/23418937/images/square/1.webp" alt="Обзор Шар латексный 12&quot;, стандарт, набор 100 шт, цвет синий — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1008.0 ₽</span>
+                  <span class="product-old-price">13 104 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Шар латексный 12", стандарт, набор 100 шт, цвет синий — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="shar-lateksnyy-12-standart-nabor-100-sht-tsvet-siniy.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Обувь" data-type="product" data-discount="49" onclick="window.location.href='vechernie-tufli-na-vysokom-kabluke-zamshevye.html'" style="cursor: pointer;">
+              <div class="product-badge">-49%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-33.wbbasket.ru/vol6947/part694782/694782432/images/square/1.webp" alt="Обзор Вечерние туфли на высоком каблуке замшевые — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1255.0 ₽</span>
+                  <span class="product-old-price">16 315 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Вечерние туфли на высоком каблуке замшевые — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.8</span>
+                </div>
+                <a href="vechernie-tufli-na-vysokom-kabluke-zamshevye.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Обувь" data-type="product" data-discount="20" onclick="window.location.href='botinki-demisezonnye-rabochie-nepromokaemye.html'" style="cursor: pointer;">
+              <div class="product-badge">-20%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-39.wbbasket.ru/vol9100/part910009/910009567/images/square/1.webp" alt="Обзор Ботинки демисезонные рабочие непромокаемые — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1602.0 ₽</span>
+                  <span class="product-old-price">20 826 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Ботинки демисезонные рабочие непромокаемые — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.6</span>
+                </div>
+                <a href="botinki-demisezonnye-rabochie-nepromokaemye.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Обувь" data-type="product" data-discount="41" onclick="window.location.href='vechernie-tufli-na-kabluke-s-otkrytoy-pyatkoy.html'" style="cursor: pointer;">
+              <div class="product-badge">-41%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-33.wbbasket.ru/vol6947/part694782/694782436/images/square/1.webp" alt="Обзор Вечерние туфли на каблуке с открытой пяткой — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1255.0 ₽</span>
+                  <span class="product-old-price">16 315 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Вечерние туфли на каблуке с открытой пяткой — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="vechernie-tufli-na-kabluke-s-otkrytoy-pyatkoy.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Одежда" data-type="product" data-discount="46" onclick="window.location.href='karnavalnyy-kostyum-otvazhnyy-pirat-5-7-let.html'" style="cursor: pointer;">
+              <div class="product-badge">-46%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol10315/part1031508/1031508831/images/square/1.webp" alt="Обзор Карнавальный костюм «Отважный пират», 5-7 лет — стоит ли покупать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">8302.0 ₽</span>
+                  <span class="product-old-price">107 926 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Карнавальный костюм «Отважный пират», 5-7 лет — стоит ли покупать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.3</span>
+                </div>
+                <a href="karnavalnyy-kostyum-otvazhnyy-pirat-5-7-let.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Одежда" data-type="product" data-discount="51" onclick="window.location.href='bryuki-demisezonnye-nepromokaemye-softshell.html'" style="cursor: pointer;">
+              <div class="product-badge">-51%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-38.wbbasket.ru/vol8593/part859306/859306865/images/square/1.webp" alt="Честный обзор Брюки демисезонные непромокаемые софтшелл: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">2674.0 ₽</span>
+                  <span class="product-old-price">34 762 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Брюки демисезонные непромокаемые софтшелл: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.6</span>
+                </div>
+                <a href="bryuki-demisezonnye-nepromokaemye-softshell.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Авто и мототовары" data-type="product" data-discount="49" onclick="window.location.href='videoregistrator-dlya-avtomobilya-vx-1300s-4k.html'" style="cursor: pointer;">
+              <div class="product-badge">-49%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-13.wbbasket.ru/vol1978/part197835/197835343/images/square/1.webp" alt="Стоит ли покупать Видеорегистратор для автомобиля VX-1300S 4K в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">19045.0 ₽</span>
+                  <span class="product-old-price">247 585 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Видеорегистратор для автомобиля VX-1300S 4K в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="videoregistrator-dlya-avtomobilya-vx-1300s-4k.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Товары для праздников" data-type="product" data-discount="56" onclick="window.location.href='girlyanda-na-batareykakh-10-metrov-svetodiodnaya.html'" style="cursor: pointer;">
+              <div class="product-badge">-56%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-12.wbbasket.ru/vol1761/part176173/176173520/images/square/1.webp" alt="Честный обзор Гирлянда на батарейках 10 метров - светодиодная: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">457.0 ₽</span>
+                  <span class="product-old-price">5 941 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Гирлянда на батарейках 10 метров - светодиодная: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="girlyanda-na-batareykakh-10-metrov-svetodiodnaya.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="62" onclick="window.location.href='analnaya-probka.html'" style="cursor: pointer;">
+              <div class="product-badge">-62%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-27.wbbasket.ru/vol4992/part499276/499276034/images/square/1.webp" alt="Стоит ли покупать Анальная пробка в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">517.0 ₽</span>
+                  <span class="product-old-price">6 721 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Анальная пробка в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.1</span>
+                </div>
+                <a href="analnaya-probka.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="19" onclick="window.location.href='nastolnaya-igra-500-zlobnykh-kart-3-0-dlya-kompanii.html'" style="cursor: pointer;">
+              <div class="product-badge">-19%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-01.wbbasket.ru/vol95/part9548/9548575/images/square/1.webp" alt="Обзор Настольная игра 500 злобных карт 3.0 для компании в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">2164.0 ₽</span>
+                  <span class="product-old-price">28 132 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Настольная игра 500 злобных карт 3.0 для компании в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="nastolnaya-igra-500-zlobnykh-kart-3-0-dlya-kompanii.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Красота и здоровье" data-type="product" data-discount="61" onclick="window.location.href='maslo-kosmeticheskoe-oblepikhovoe-100-ml.html'" style="cursor: pointer;">
+              <div class="product-badge">-61%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-04.wbbasket.ru/vol652/part65287/65287774/images/square/1.webp" alt="Стоит ли покупать Масло косметическое облепиховое 100 мл в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">168.0 ₽</span>
+                  <span class="product-old-price">2 184 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Масло косметическое облепиховое 100 мл в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.8</span>
+                </div>
+                <a href="maslo-kosmeticheskoe-oblepikhovoe-100-ml.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая техника" data-type="product" data-discount="48" onclick="window.location.href='robot-moyshchik-okon-s-dvoynym-raspyleniem-kvadratnyy.html'" style="cursor: pointer;">
+              <div class="product-badge">-48%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-25.wbbasket.ru/vol4445/part444560/444560298/images/square/1.webp" alt="Обзор Робот мойщик окон с двойным распылением квадратный в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">9913.0 ₽</span>
+                  <span class="product-old-price">128 869 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Робот мойщик окон с двойным распылением квадратный в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.1</span>
+                </div>
+                <a href="robot-moyshchik-okon-s-dvoynym-raspyleniem-kvadratnyy.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая техника" data-type="product" data-discount="55" onclick="window.location.href='pakety-dlya-vakuumatora-riflenye.html'" style="cursor: pointer;">
+              <div class="product-badge">-55%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-40.wbbasket.ru/vol9544/part954419/954419496/images/square/1.webp" alt="Обзор Пакеты для вакууматора рифленые в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">172.0 ₽</span>
+                  <span class="product-old-price">2 236 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Пакеты для вакууматора рифленые в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="pakety-dlya-vakuumatora-riflenye.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Гаджеты" data-type="product" data-discount="39" onclick="window.location.href='kombinezon-zimniy-iz-membrannoy-tkani.html'" style="cursor: pointer;">
+              <div class="product-badge">-39%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-08.wbbasket.ru/vol1147/part114749/114749045/images/square/1.webp" alt="Вся правда про Комбинезон зимний из мембранной ткани: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">11932.0 ₽</span>
+                  <span class="product-old-price">155 116 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Комбинезон зимний из мембранной ткани: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="kombinezon-zimniy-iz-membrannoy-tkani.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="38" onclick="window.location.href='vibrator.html'" style="cursor: pointer;">
+              <div class="product-badge">-38%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-27.wbbasket.ru/vol4995/part499534/499534599/images/square/1.webp" alt="Обзор вибратор в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">756.0 ₽</span>
+                  <span class="product-old-price">9 828 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор вибратор в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.4</span>
+                </div>
+                <a href="vibrator.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="59" onclick="window.location.href='stopki-v-chekhle-byvalyy-rybak-nabor-4-sht-kh-50-ml.html'" style="cursor: pointer;">
+              <div class="product-badge">-59%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-37.wbbasket.ru/vol8223/part822365/822365308/images/square/1.webp" alt="Вся правда про Стопки в чехле «Бывалый рыбак» набор 4 шт. х 50 мл: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">721.0 ₽</span>
+                  <span class="product-old-price">9 373 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Стопки в чехле «Бывалый рыбак» набор 4 шт. х 50 мл: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="stopki-v-chekhle-byvalyy-rybak-nabor-4-sht-kh-50-ml.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="16" onclick="window.location.href='vibrator-krolik-dlya-zhenshchin-stimulyatsiya-tochki-g-i-klitora.html'" style="cursor: pointer;">
+              <div class="product-badge">-16%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-27.wbbasket.ru/vol4995/part499531/499531699/images/square/1.webp" alt="Обзор Вибратор-кролик для женщин стимуляция точки G и клитора в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1126.0 ₽</span>
+                  <span class="product-old-price">14 638 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Вибратор-кролик для женщин стимуляция точки G и клитора в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="vibrator-krolik-dlya-zhenshchin-stimulyatsiya-tochki-g-i-klitora.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Электроника" data-type="product" data-discount="36" onclick="window.location.href='igrovoy-noutbuk-16-ips-16-256-gb.html'" style="cursor: pointer;">
+              <div class="product-badge">-36%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol10113/part1011335/1011335070/images/square/1.webp" alt="Вся правда про Игровой ноутбук 16&quot; IPS 16 256 GB: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">304400.0 ₽</span>
+                  <span class="product-old-price">3 957 200 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Игровой ноутбук 16" IPS 16 256 GB: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="igrovoy-noutbuk-16-ips-16-256-gb.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая техника" data-type="product" data-discount="50" onclick="window.location.href='shveynaya-mashinka-elektricheskaya-s-pedalyu.html'" style="cursor: pointer;">
+              <div class="product-badge">-50%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-18.wbbasket.ru/vol3021/part302190/302190161/images/square/1.webp" alt="Стоит ли покупать Швейная машинка электрическая с педалью в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">3140.0 ₽</span>
+                  <span class="product-old-price">40 820 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Швейная машинка электрическая с педалью в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="shveynaya-mashinka-elektricheskaya-s-pedalyu.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Товары для животных" data-type="product" data-discount="63" onclick="window.location.href='gubka-dlya-filtra-kruglaya-8kh8kh16-sm.html'" style="cursor: pointer;">
+              <div class="product-badge">-63%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-16.wbbasket.ru/vol2517/part251766/251766022/images/square/1.webp" alt="Вся правда про Губка для фильтра круглая 8х8х16 см: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">322.0 ₽</span>
+                  <span class="product-old-price">4 186 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Губка для фильтра круглая 8х8х16 см: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="gubka-dlya-filtra-kruglaya-8kh8kh16-sm.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Товары для животных" data-type="product" data-discount="34" onclick="window.location.href='gubka-kruglaya-melkoporistaya-3-8kh8kh10-sm.html'" style="cursor: pointer;">
+              <div class="product-badge">-34%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-16.wbbasket.ru/vol2517/part251766/251766028/images/square/1.webp" alt="Честный обзор Губка круглая мелкопористая № 3, 8х8х10 см: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">199.0 ₽</span>
+                  <span class="product-old-price">2 587 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Губка круглая мелкопористая № 3, 8х8х10 см: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.7</span>
+                </div>
+                <a href="gubka-kruglaya-melkoporistaya-3-8kh8kh10-sm.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Украшения" data-type="product" data-discount="33" onclick="window.location.href='sergi-koltsa-zolotye-585-kongo-2-5-sm.html'" style="cursor: pointer;">
+              <div class="product-badge">-33%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-03.wbbasket.ru/vol368/part36861/36861937/images/square/1.webp" alt="Честный обзор Серьги кольца золотые 585 Конго 2,5 см: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">20134.0 ₽</span>
+                  <span class="product-old-price">261 742 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Серьги кольца золотые 585 Конго 2,5 см: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.1</span>
+                </div>
+                <a href="sergi-koltsa-zolotye-585-kongo-2-5-sm.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Продукты" data-type="product" data-discount="53" onclick="window.location.href='konditerskaya-posypka-zhemchug-1-5-kg.html'" style="cursor: pointer;">
+              <div class="product-badge">-53%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-03.wbbasket.ru/vol302/part30240/30240066/images/square/1.webp" alt="Стоит ли покупать Кондитерская посыпка жемчуг 1,5 кг в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1703.0 ₽</span>
+                  <span class="product-old-price">22 139 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Кондитерская посыпка жемчуг 1,5 кг в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.6</span>
+                </div>
+                <a href="konditerskaya-posypka-zhemchug-1-5-kg.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Продукты" data-type="product" data-discount="60" onclick="window.location.href='posypka-dlya-torta.html'" style="cursor: pointer;">
+              <div class="product-badge">-60%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-03.wbbasket.ru/vol296/part29665/29665173/images/square/1.webp" alt="Стоит ли покупать Посыпка для торта в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">142.0 ₽</span>
+                  <span class="product-old-price">1 846 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Посыпка для торта в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.1</span>
+                </div>
+                <a href="posypka-dlya-torta.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Продукты" data-type="product" data-discount="17" onclick="window.location.href='posypka-konditerskaya-dlya-desertov-i-vypechki-molochnyy-50g.html'" style="cursor: pointer;">
+              <div class="product-badge">-17%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-17.wbbasket.ru/vol2624/part262478/262478847/images/square/1.webp" alt="Вся правда про Посыпка кондитерская для десертов и выпечки Молочный 50г: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">130.0 ₽</span>
+                  <span class="product-old-price">1 690 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Посыпка кондитерская для десертов и выпечки Молочный 50г: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="posypka-konditerskaya-dlya-desertov-i-vypechki-molochnyy-50g.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Продукты" data-type="product" data-discount="24" onclick="window.location.href='konditerskiy-glyukoznyy-sirop-dlya-desertov-500-ml.html'" style="cursor: pointer;">
+              <div class="product-badge">-24%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-17.wbbasket.ru/vol2624/part262468/262468811/images/square/1.webp" alt="Обзор Кондитерский глюкозный сироп для десертов 500 мл в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">255.0 ₽</span>
+                  <span class="product-old-price">3 315 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Кондитерский глюкозный сироп для десертов 500 мл в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="konditerskiy-glyukoznyy-sirop-dlya-desertov-500-ml.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Продукты" data-type="product" data-discount="31" onclick="window.location.href='glyukoznyy-sirop-43-konditerskiy-1300-gr.html'" style="cursor: pointer;">
+              <div class="product-badge">-31%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-04.wbbasket.ru/vol702/part70206/70206556/images/square/1.webp" alt="Стоит ли покупать Глюкозный сироп 43% кондитерский 1300 гр в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">358.0 ₽</span>
+                  <span class="product-old-price">4 654 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Глюкозный сироп 43% кондитерский 1300 гр в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="glyukoznyy-sirop-43-konditerskiy-1300-gr.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Хобби" data-type="product" data-discount="23" onclick="window.location.href='nabor-dlya-tvorchestva-novogodniy-shar-s-massoy-dlya-lepki.html'" style="cursor: pointer;">
+              <div class="product-badge">-23%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-17.wbbasket.ru/vol2762/part276206/276206988/images/square/1.webp" alt="Вся правда про Набор для творчества новогодний шар с массой для лепки: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">352.0 ₽</span>
+                  <span class="product-old-price">4 576 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Набор для творчества новогодний шар с массой для лепки: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.4</span>
+                </div>
+                <a href="nabor-dlya-tvorchestva-novogodniy-shar-s-massoy-dlya-lepki.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Аксессуары" data-type="product" data-discount="30" onclick="window.location.href='kepka-detskaya.html'" style="cursor: pointer;">
+              <div class="product-badge">-30%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-15.wbbasket.ru/vol2236/part223637/223637772/images/square/1.webp" alt="Вся правда про Кепка детская: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">562.0 ₽</span>
+                  <span class="product-old-price">7 306 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Кепка детская: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.6</span>
+                </div>
+                <a href="kepka-detskaya.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Электроника" data-type="product" data-discount="50" onclick="window.location.href='noutbuk-dlya-raboty-i-ucheby-fusion-15-6-ips-16-512-gb.html'" style="cursor: pointer;">
+              <div class="product-badge">-50%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol9692/part969251/969251563/images/square/1.webp" alt="Ноутбук для работы и учебы Fusion 15.6&quot; IPS 16 512 GB — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">152800.0 ₽</span>
+                  <span class="product-old-price">1 986 400 ₽</span>
+                </div>
+                <h3 class="product-title">Ноутбук для работы и учебы Fusion 15.6" IPS 16 512 GB — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.4</span>
+                </div>
+                <a href="noutbuk-dlya-raboty-i-ucheby-fusion-15-6-ips-16-512-gb.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Одежда" data-type="product" data-discount="56" onclick="window.location.href='kurtka-demisezonnaya-detskaya-membrana.html'" style="cursor: pointer;">
+              <div class="product-badge">-56%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-10.wbbasket.ru/vol1392/part139276/139276724/images/square/1.webp" alt="Обзор Куртка демисезонная детская мембрана в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1760.0 ₽</span>
+                  <span class="product-old-price">22 880 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Куртка демисезонная детская мембрана в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.3</span>
+                </div>
+                <a href="kurtka-demisezonnaya-detskaya-membrana.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Книги и канцелярия" data-type="product" data-discount="41" onclick="window.location.href='nabor-bloknotov-dlya-zapisey-10-sht-a6-30-listov.html'" style="cursor: pointer;">
+              <div class="product-badge">-41%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol10309/part1030947/1030947634/images/square/1.webp" alt="Обзор Набор блокнотов для записей, 10 шт, А6, 30 листов в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">538.0 ₽</span>
+                  <span class="product-old-price">6 994 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Набор блокнотов для записей, 10 шт, А6, 30 листов в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.1</span>
+                </div>
+                <a href="nabor-bloknotov-dlya-zapisey-10-sht-a6-30-listov.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Электроника" data-type="product" data-discount="32" onclick="window.location.href='igrovoy-noutbuk-15-6-ips-16-512-gb.html'" style="cursor: pointer;">
+              <div class="product-badge">-32%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol10113/part1011335/1011335069/images/square/1.webp" alt="Игровой ноутбук 15,6&quot; IPS 16 512 GB — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">305600.0 ₽</span>
+                  <span class="product-old-price">3 972 800 ₽</span>
+                </div>
+                <h3 class="product-title">Игровой ноутбук 15,6" IPS 16 512 GB — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="igrovoy-noutbuk-15-6-ips-16-512-gb.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="59" onclick="window.location.href='nastolnaya-igra-dlya-vzroslykh-500-zlobnykh-kart-dopolnenie.html'" style="cursor: pointer;">
+              <div class="product-badge">-59%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-01.wbbasket.ru/vol34/part3430/3430205/images/square/1.webp" alt="Вся правда про Настольная игра для взрослых &quot;500 Злобных карт&quot; дополнение: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1128.0 ₽</span>
+                  <span class="product-old-price">14 664 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Настольная игра для взрослых "500 Злобных карт" дополнение: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="nastolnaya-igra-dlya-vzroslykh-500-zlobnykh-kart-dopolnenie.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="44" onclick="window.location.href='nastolnaya-igra-dlya-kompanii-imadzhinarium-multivselennaya.html'" style="cursor: pointer;">
+              <div class="product-badge">-44%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-10.wbbasket.ru/vol1492/part149252/149252282/images/square/1.webp" alt="Честный обзор Настольная игра для компании Имаджинариум Мультивселенная: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">2161.0 ₽</span>
+                  <span class="product-old-price">28 093 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Настольная игра для компании Имаджинариум Мультивселенная: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.8</span>
+                </div>
+                <a href="nastolnaya-igra-dlya-kompanii-imadzhinarium-multivselennaya.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="51" onclick="window.location.href='nastolnaya-igra-dlya-kompanii-imadzhinarium-taro-na-8-marta.html'" style="cursor: pointer;">
+              <div class="product-badge">-51%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-10.wbbasket.ru/vol1583/part158378/158378153/images/square/1.webp" alt="Настольная игра для компании Имаджинариум Таро на 8 марта — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">2275.0 ₽</span>
+                  <span class="product-old-price">29 575 ₽</span>
+                </div>
+                <h3 class="product-title">Настольная игра для компании Имаджинариум Таро на 8 марта — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.0</span>
+                </div>
+                <a href="nastolnaya-igra-dlya-kompanii-imadzhinarium-taro-na-8-marta.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="58" onclick="window.location.href='nastolnaya-igra-dlya-kompaniy-detektor-pravdy-protiv-vsekh.html'" style="cursor: pointer;">
+              <div class="product-badge">-58%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-18.wbbasket.ru/vol2961/part296186/296186175/images/square/1.webp" alt="Вся правда про Настольная игра для компаний &quot;Детектор правды против всех&quot;: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">624.0 ₽</span>
+                  <span class="product-old-price">8 112 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Настольная игра для компаний "Детектор правды против всех": характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.4</span>
+                </div>
+                <a href="nastolnaya-igra-dlya-kompaniy-detektor-pravdy-protiv-vsekh.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="36" onclick="window.location.href='nastolnaya-igra-500-zlobnykh-kart-nabor-krasnyy-dopolnenie.html'" style="cursor: pointer;">
+              <div class="product-badge">-36%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-01.wbbasket.ru/vol42/part4291/4291125/images/square/1.webp" alt="Вся правда про Настольная игра &quot;500 Злобных карт набор красный&quot; дополнение: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">795.0 ₽</span>
+                  <span class="product-old-price">10 335 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Настольная игра "500 Злобных карт набор красный" дополнение: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="nastolnaya-igra-500-zlobnykh-kart-nabor-krasnyy-dopolnenie.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="43" onclick="window.location.href='nastolnaya-igra-500-zlobnykh-kart-belyy-nabor-dopolnenie.html'" style="cursor: pointer;">
+              <div class="product-badge">-43%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-02.wbbasket.ru/vol257/part25728/25728897/images/square/1.webp" alt="Настольная игра &quot;500 Злобных карт&quot; белый набор дополнение — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">966.0 ₽</span>
+                  <span class="product-old-price">12 558 ₽</span>
+                </div>
+                <h3 class="product-title">Настольная игра "500 Злобных карт" белый набор дополнение — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="nastolnaya-igra-500-zlobnykh-kart-belyy-nabor-dopolnenie.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="50" onclick="window.location.href='nastolnaya-igra-dlya-kompanii-detektor-pravdy.html'" style="cursor: pointer;">
+              <div class="product-badge">-50%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-01.wbbasket.ru/vol82/part8280/8280810/images/square/1.webp" alt="Обзор Настольная игра для компании &quot;Детектор правды&quot; в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">2295.0 ₽</span>
+                  <span class="product-old-price">29 835 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Настольная игра для компании "Детектор правды" в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.7</span>
+                </div>
+                <a href="nastolnaya-igra-dlya-kompanii-detektor-pravdy.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="🔞 18+" data-type="product" data-discount="21" onclick="window.location.href='nastolnaya-igra-18-dlya-kompanii-memy-zlobnye-karty-na-khaype.html'" style="cursor: pointer;">
+              <div class="product-badge">-21%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-22.wbbasket.ru/vol3910/part391047/391047921/images/square/1.webp" alt="Настольная игра 18+ для компании мемы Злобные карты на хайпе — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1479.0 ₽</span>
+                  <span class="product-old-price">19 227 ₽</span>
+                </div>
+                <h3 class="product-title">Настольная игра 18+ для компании мемы Злобные карты на хайпе — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.8</span>
+                </div>
+                <a href="nastolnaya-igra-18-dlya-kompanii-memy-zlobnye-karty-na-khaype.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="20" onclick="window.location.href='nabor-s-bokalom-dlya-viski-s-nadpisyu.html'" style="cursor: pointer;">
+              <div class="product-badge">-20%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-17.wbbasket.ru/vol2659/part265975/265975511/images/square/1.webp" alt="Честный обзор Набор с бокалом для виски с надписью: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">636.0 ₽</span>
+                  <span class="product-old-price">8 268 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Набор с бокалом для виски с надписью: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="nabor-s-bokalom-dlya-viski-s-nadpisyu.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="27" onclick="window.location.href='nabor-pivnykh-kruzhek-steklyannykh-drezden-500-ml-2-sht.html'" style="cursor: pointer;">
+              <div class="product-badge">-27%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-17.wbbasket.ru/vol2661/part266148/266148083/images/square/1.webp" alt="Обзор Набор пивных кружек стеклянных Дрезден 500 мл, 2 шт в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">696.0 ₽</span>
+                  <span class="product-old-price">9 048 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Набор пивных кружек стеклянных Дрезден 500 мл, 2 шт в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.7</span>
+                </div>
+                <a href="nabor-pivnykh-kruzhek-steklyannykh-drezden-500-ml-2-sht.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая химия" data-type="product" data-discount="34" onclick="window.location.href='poroshok-stiralnyy-avtomat-synergetic-dlya-detskogo-belya-baby.html'" style="cursor: pointer;">
+              <div class="product-badge">-34%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-16.wbbasket.ru/vol2482/part248231/248231304/images/big/1.webp" alt="Вся правда про Порошок стиральный автомат SYNERGETIC для детского белья...: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">634.0 ₽</span>
+                  <span class="product-old-price">8 242 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Порошок стиральный автомат SYNERGETIC для детского белья...: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.8</span>
+                </div>
+                <a href="poroshok-stiralnyy-avtomat-synergetic-dlya-detskogo-belya-baby.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="33" onclick="window.location.href='bokal-dlya-vina-s-nadpisyu-sveta-imennoy.html'" style="cursor: pointer;">
+              <div class="product-badge">-33%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-15.wbbasket.ru/vol2231/part223129/223129598/images/square/1.webp" alt="Бокал для вина с надписью Света именной — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">598.0 ₽</span>
+                  <span class="product-old-price">7 774 ₽</span>
+                </div>
+                <h3 class="product-title">Бокал для вина с надписью Света именной — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.6</span>
+                </div>
+                <a href="bokal-dlya-vina-s-nadpisyu-sveta-imennoy.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая химия" data-type="product" data-discount="40" onclick="window.location.href='kapsuly-dlya-stirki-synergetic-all-in-one-magicheskaya-orkhideya-60.html'" style="cursor: pointer;">
+              <div class="product-badge">-40%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-39.wbbasket.ru/vol8768/part876838/876838998/images/big/1.webp" alt="Вся правда про Капсулы для стирки SYNERGETIC ALL IN ONE &quot;Магическая...: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">1199.0 ₽</span>
+                  <span class="product-old-price">15 587 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Капсулы для стирки SYNERGETIC ALL IN ONE "Магическая...: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.7</span>
+                </div>
+                <a href="kapsuly-dlya-stirki-synergetic-all-in-one-magicheskaya-orkhideya-60.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая химия" data-type="product" data-discount="47" onclick="window.location.href='sredstvo-dlya-mytya-posudy-synergetic-sochnyy-limon-0-5l-moyushchee.html'" style="cursor: pointer;">
+              <div class="product-badge">-47%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol9666/part966651/966651470/images/big/1.webp" alt="Вся правда про Средство для мытья посуды SYNERGETIC Сочный лимон 0,5л...: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">163.0 ₽</span>
+                  <span class="product-old-price">2 119 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Средство для мытья посуды SYNERGETIC Сочный лимон 0,5л...: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.2</span>
+                </div>
+                <a href="sredstvo-dlya-mytya-posudy-synergetic-sochnyy-limon-0-5l-moyushchee.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Все для дома и сада" data-type="product" data-discount="54" onclick="window.location.href='bokaly-dlya-vina-lady-diamond-270-ml-6-shtuk.html'" style="cursor: pointer;">
+              <div class="product-badge">-54%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol9779/part977975/977975651/images/square/1.webp" alt="Стоит ли покупать Бокалы для вина LADY DIAMOND 270 мл 6 штук в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">3729.0 ₽</span>
+                  <span class="product-old-price">48 477 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Бокалы для вина LADY DIAMOND 270 мл 6 штук в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.7</span>
+                </div>
+                <a href="bokaly-dlya-vina-lady-diamond-270-ml-6-shtuk.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая техника" data-type="product" data-discount="25" onclick="window.location.href='elektricheskaya-zubnaya-shchetka-nabor-belaya-i-chernaya-aquasona.html'" style="cursor: pointer;">
+              <div class="product-badge">-25%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-28.wbbasket.ru/vol5437/part543735/543735679/images/square/1.webp" alt="Обзор Электрическая зубная щетка набор белая и черная AquaSona в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">4471.0 ₽</span>
+                  <span class="product-old-price">58 123 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Электрическая зубная щетка набор белая и черная AquaSona в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.8</span>
+                </div>
+                <a href="elektricheskaya-zubnaya-shchetka-nabor-belaya-i-chernaya-aquasona.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая техника" data-type="product" data-discount="32" onclick="window.location.href='elektricheskaya-zubnaya-shchetka-aquasona.html'" style="cursor: pointer;">
+              <div class="product-badge">-32%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-28.wbbasket.ru/vol5251/part525112/525112619/images/square/1.webp" alt="Электрическая зубная щетка AquaSona — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">2454.0 ₽</span>
+                  <span class="product-old-price">31 902 ₽</span>
+                </div>
+                <h3 class="product-title">Электрическая зубная щетка AquaSona — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.0</span>
+                </div>
+                <a href="elektricheskaya-zubnaya-shchetka-aquasona.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая химия" data-type="product" data-discount="31" onclick="window.location.href='sredstvo-dlya-mytya-posudy-synergetic-mindalnoe-molochko-5-l.html'" style="cursor: pointer;">
+              <div class="product-badge">-31%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-38.wbbasket.ru/vol8636/part863624/863624286/images/big/1.webp" alt="Обзор Средство для мытья посуды SYNERGETIC &quot;Миндальное молочко&quot;,... в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">926.0 ₽</span>
+                  <span class="product-old-price">12 038 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Средство для мытья посуды SYNERGETIC "Миндальное молочко",... в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.7</span>
+                </div>
+                <a href="sredstvo-dlya-mytya-posudy-synergetic-mindalnoe-molochko-5-l.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая химия" data-type="product" data-discount="38" onclick="window.location.href='gel-dlya-posudomoechnoy-mashiny-synergetic-1l-kontsentrirovannoe-s.html'" style="cursor: pointer;">
+              <div class="product-badge">-38%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol9721/part972146/972146296/images/big/1.webp" alt="Стоит ли покупать Гель для посудомоечной машины SYNERGETIC 1л... в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">358.0 ₽</span>
+                  <span class="product-old-price">4 654 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Гель для посудомоечной машины SYNERGETIC 1л... в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.8</span>
+                </div>
+                <a href="gel-dlya-posudomoechnoy-mashiny-synergetic-1l-kontsentrirovannoe-s.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Украшения" data-type="product" data-discount="16" onclick="window.location.href='podveska-serebro-925-dlinnaya-palochka.html'" style="cursor: pointer;">
+              <div class="product-badge">-16%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-03.wbbasket.ru/vol396/part39602/39602101/images/square/1.webp" alt="Вся правда про Подвеска серебро 925 длинная палочка: характеристики, плюсы, минусы и отзывы покупателей" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">840.0 ₽</span>
+                  <span class="product-old-price">10 920 ₽</span>
+                </div>
+                <h3 class="product-title">Вся правда про Подвеска серебро 925 длинная палочка: характеристики, плюсы, минусы и отзывы покупателей</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.4</span>
+                </div>
+                <a href="podveska-serebro-925-dlinnaya-palochka.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Спортивные товары" data-type="product" data-discount="15" onclick="window.location.href='begovaya-dorozhka-dlya-doma-elektricheskaya-150-kg-ktc-348b.html'" style="cursor: pointer;">
+              <div class="product-badge">-15%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-23.wbbasket.ru/vol3937/part393771/393771185/images/square/1.webp" alt="Честный обзор Беговая дорожка для дома электрическая 150 кг KTC-348B: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">16325.0 ₽</span>
+                  <span class="product-old-price">212 225 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Беговая дорожка для дома электрическая 150 кг KTC-348B: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.8</span>
+                </div>
+                <a href="begovaya-dorozhka-dlya-doma-elektricheskaya-150-kg-ktc-348b.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Электроника" data-type="product" data-discount="56" onclick="window.location.href='noutbuk-dlya-raboty-i-ucheby-taganay-15-6-ips-16-512-gb.html'" style="cursor: pointer;">
+              <div class="product-badge">-56%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-17.wbbasket.ru/vol2707/part270762/270762735/images/square/1.webp" alt="Ноутбук для работы и учебы Taganay 15,6&quot; IPS 16 512 GB — подробный разбор, характеристики и цены со скидкой" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">30760.0 ₽</span>
+                  <span class="product-old-price">399 880 ₽</span>
+                </div>
+                <h3 class="product-title">Ноутбук для работы и учебы Taganay 15,6" IPS 16 512 GB — подробный разбор, характеристики и цены со скидкой</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.0</span>
+                </div>
+                <a href="noutbuk-dlya-raboty-i-ucheby-taganay-15-6-ips-16-512-gb.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая техника" data-type="product" data-discount="39" onclick="window.location.href='shveynaya-mashinka-elektricheskaya.html'" style="cursor: pointer;">
+              <div class="product-badge">-39%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-18.wbbasket.ru/vol3032/part303208/303208249/images/square/1.webp" alt="Честный обзор Швейная машинка электрическая: все плюсы и минусы, реальные отзывы (2026)" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">5976.0 ₽</span>
+                  <span class="product-old-price">77 688 ₽</span>
+                </div>
+                <h3 class="product-title">Честный обзор Швейная машинка электрическая: все плюсы и минусы, реальные отзывы (2026)</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.8</span>
+                </div>
+                <a href="shveynaya-mashinka-elektricheskaya.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Бытовая техника" data-type="product" data-discount="46" onclick="window.location.href='irrigator-dlya-zubov-i-desen-portativnyy-aquapick.html'" style="cursor: pointer;">
+              <div class="product-badge">-46%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-12.wbbasket.ru/vol1799/part179964/179964642/images/square/1.webp" alt="Обзор Ирригатор для зубов и десен портативный AquaPick в 2026 году: характеристики, отзывы и стоит ли брать?" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">3292.0 ₽</span>
+                  <span class="product-old-price">42 796 ₽</span>
+                </div>
+                <h3 class="product-title">Обзор Ирригатор для зубов и десен портативный AquaPick в 2026 году: характеристики, отзывы и стоит ли брать?</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.3</span>
+                </div>
+                <a href="irrigator-dlya-zubov-i-desen-portativnyy-aquapick.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Украшения" data-type="product" data-discount="17" onclick="window.location.href='yuvelirnaya-podveska-zolotaya-585-mat-i-ditya.html'" style="cursor: pointer;">
+              <div class="product-badge">-17%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-26.wbbasket.ru/vol4841/part484138/484138916/images/square/1.webp" alt="Стоит ли покупать Ювелирная подвеска золотая 585 Мать и дитя в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">7817.0 ₽</span>
+                  <span class="product-old-price">101 621 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Ювелирная подвеска золотая 585 Мать и дитя в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>9.4</span>
+                </div>
+                <a href="yuvelirnaya-podveska-zolotaya-585-mat-i-ditya.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+            <div class="product-card" data-category="Украшения" data-type="product" data-discount="24" onclick="window.location.href='yuvelirnye-zolotye-sergi-585-s-fianitami.html'" style="cursor: pointer;">
+              <div class="product-badge">-24%</div>
+              <div class="product-img-wrapper">
+                <img src="https://basket-41.wbbasket.ru/vol10237/part1023784/1023784933/images/square/1.webp" alt="Стоит ли покупать Ювелирные золотые серьги 585 с фианитами в 2026 году? Жесткий разбор и мнения" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <div class="product-price-row">
+                  <span class="product-price">31975.0 ₽</span>
+                  <span class="product-old-price">415 675 ₽</span>
+                </div>
+                <h3 class="product-title">Стоит ли покупать Ювелирные золотые серьги 585 с фианитами в 2026 году? Жесткий разбор и мнения</h3>
+                <div class="product-rating">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  <span>8.6</span>
+                </div>
+                <a href="yuvelirnye-zolotye-sergi-585-s-fianitami.html" class="btn-buy-grid">Смотреть обзор</a>
+              </div>
+            </div>
+            
+    </div>
+  </main>
+  
+  <a href="https://t.me/cheap_for" target="_blank" class="tg-floating-banner">
+    <div class="tg-floating-banner-text">
+      <div class="tg-floating-banner-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        Секретные промокоды
+      </div>
+      <div class="tg-floating-banner-desc">Скидки до 90% и баги маркетплейсов публикуем только в нашем Telegram!</div>
+    </div>
+    <div class="tg-floating-banner-btn">Подписаться</div>
+  </a>
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">CheapFor.ru</div>
+      <p class="footer-text">Мы ежедневно ищем лучшие предложения и делимся честными обзорами. Экономьте с умом!</p>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav">
+    <a href="index.html" class="nav-item active">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      Главная
+    </a>
+    <a href="#" class="nav-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      Поиск
+    </a>
+    <a href="https://t.me/cheap_for" class="nav-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      Telegram
+    </a>
+  </nav>
+
+  <script>
+    let currentType = 'product';
+
+    function switchType(type) {
+      currentType = type;
+      
+      // Update active tab styling
+      document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+      document.querySelector(`.main-tab[data-target="${type}"]`).classList.add('active');
+
+      // Show/hide chips based on type
+      document.querySelectorAll('.chip').forEach(chip => {
+        if (chip.dataset.type === type || chip.dataset.cat === 'Все') {
+          chip.style.display = 'block';
+        } else {
+          chip.style.display = 'none';
+        }
+      });
+
+      // Auto-click "Все" chip when switching tabs
+      const allChip = document.querySelector('.chip[data-cat="Все"]');
+      if (allChip) allChip.click();
+    }
+
+    function filterCategory(cat, el) {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        // Filter by type first
+        if (card.dataset.type !== currentType) {
+          card.style.display = 'none';
+          return;
+        }
+
+        let isPromo = false;
+        // The category string might be HTML escaped (e.g., &gt;)
+        if (cat.includes('Акции') && cat.includes('%')) {
+          const minDiscount = parseInt(cat.replace(/[^0-9]/g, ''));
+          if (parseInt(card.dataset.discount) >= minDiscount) {
+            isPromo = true;
+          }
+        }
+        
+        if (cat === 'Все' || isPromo || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Hide non-product chips initially
+      document.querySelectorAll('.chip').forEach(chip => {
+        if (chip.dataset.type !== 'product' && chip.dataset.cat !== 'Все') {
+          chip.style.display = 'none';
+        }
+      });
+      // Drag to scroll for category chips
+      const slider = document.querySelector('.category-chips');
+      if (slider) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+          isDown = true;
+          slider.classList.add('active');
+          startX = e.pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - slider.offsetLeft;
+          const walk = (x - startX) * 2; // scroll-fast
+          slider.scrollLeft = scrollLeft - walk;
+        });
+      }
+
+      const searchInput = document.querySelector('.search-input');
+      if(searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const term = e.target.value.toLowerCase();
+          const cards = document.querySelectorAll('.product-card');
+          cards.forEach(card => {
+            const title = card.querySelector('.product-title').innerText.toLowerCase();
+            if (title.includes(term)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          if(term) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+          } else {
+            // Restore 'Все' filter if search is empty
+            const allChip = document.querySelector('.chip[data-cat="Все"]') || document.querySelector('.chip');
+            if (allChip) allChip.click();
+          }
+        });
+      }
+
+      // Theme Toggle Logic
+      const themeToggle = document.getElementById('theme-toggle');
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'light') {
+        document.body.classList.add('light-theme');
+      }
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('light-theme');
+          const isLight = document.body.classList.contains('light-theme');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+      }
+    });
+  </script>
+
+  <script>
+    const canvas = document.getElementById('space-bg');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    let stars = [];
+    
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      initStars();
+    }
+    
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < 150; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.5,
+          vx: Math.floor(Math.random() * 50) - 25,
+          vy: Math.floor(Math.random() * 50) - 25
+        });
+      }
+    }
+    
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.globalCompositeOperation = "lighter";
+      
+      for (let i = 0, x = stars.length; i < x; i++) {
+        let s = stars[i];
+        
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillStyle = 'black';
+        ctx.stroke();
+      }
+      
+      ctx.beginPath();
+      for (let i = 0, x = stars.length; i < x; i++) {
+        let starI = stars[i];
+        ctx.moveTo(starI.x,starI.y); 
+        for (let j = 0, x = stars.length; j < x; j++) {
+          let starII = stars[j];
+          if(distance(starI, starII) < 150) {
+            ctx.lineTo(starII.x,starII.y); 
+          }
+        }
+      }
+      ctx.lineWidth = 0.05;
+      ctx.strokeStyle = 'white';
+      ctx.stroke();
+    }
+    
+    function distance( point1, point2 ){
+      let xs = 0;
+      let ys = 0;
+      xs = point2.x - point1.x;
+      xs = xs * xs;
+      ys = point2.y - point1.y;
+      ys = ys * ys;
+      return Math.sqrt( xs + ys );
+    }
+    
+    function update() {
+      for (let i = 0, x = stars.length; i < x; i++) {
+        let s = stars[i];
+        
+        s.x += s.vx / 150;
+        s.y += s.vy / 150;
+        
+        if (s.x < 0 || s.x > width) s.vx = -s.vx;
+        if (s.y < 0 || s.y > height) s.vy = -s.vy;
+      }
+    }
+    
+    function tick() {
+      draw();
+      update();
+      requestAnimationFrame(tick);
+    }
+    
+    window.addEventListener('resize', resize);
+    resize();
+    tick();
+  </script>
+</body>
+</html>
